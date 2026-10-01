@@ -1,0 +1,2 @@
+# Install torch separately for the target device (requirements-cu128.txt on this machine).
+transformers==4.57.6

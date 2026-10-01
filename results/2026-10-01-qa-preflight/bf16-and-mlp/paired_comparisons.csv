@@ -1,0 +1,5 @@
+baseline,candidate,trial,question_id,context,mode,total_speedup,first_text_speedup,same_output_tokens,baseline_output_tokens,candidate_output_tokens,baseline_fact_pass,candidate_fact_pass
+cuda_eager_bf16,cuda_sdpa_bf16,0,price,short,fixed,1.2478142861924781,0.9150018476823754,False,32,32,,
+cuda_eager_bf16,cuda_sdpa_bf16,0,price,short,natural,1.5361668468807868,0.9010993989869301,True,22,22,True,True
+cuda_eager_bf16,cuda_sdpa_bf16,0,price,long,fixed,1.3910754177692892,0.8348192424733654,True,32,32,,
+cuda_eager_bf16,cuda_sdpa_bf16,0,price,long,natural,0.8002987246053986,0.7489950437782593,True,22,22,True,True

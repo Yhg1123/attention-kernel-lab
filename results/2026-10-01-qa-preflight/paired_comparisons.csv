@@ -1,0 +1,9 @@
+baseline,candidate,trial,question_id,context,mode,total_speedup,first_text_speedup,same_output_tokens,baseline_output_tokens,candidate_output_tokens,baseline_fact_pass,candidate_fact_pass
+cuda_eager_fp16,cuda_sdpa_fp16,0,price,short,fixed,0.7736540675604907,13.267314236822706,False,32,32,,
+cuda_eager_fp16,cuda_sdpa_fp16,0,price,short,natural,2.8670144464139318,28.761439349320977,False,64,22,False,True
+cuda_eager_fp16,cuda_sdpa_fp16,0,price,long,fixed,0.8085993124527265,6.009402007532156,False,32,32,,
+cuda_eager_fp16,cuda_sdpa_fp16,0,price,long,natural,2.347154512110911,12.039706719798922,False,64,22,False,True
+cpu_eager_fp32,cpu_eager_int8,0,price,short,fixed,3.8406891138547796,4.310631959274023,False,32,32,,
+cpu_eager_fp32,cpu_eager_int8,0,price,short,natural,1.6097150739214998,4.093864505793025,False,22,64,True,False
+cpu_eager_fp32,cpu_eager_int8,0,price,long,fixed,3.2164893822304377,3.1516714216125017,False,32,32,,
+cpu_eager_fp32,cpu_eager_int8,0,price,long,natural,1.710537722240327,3.110704478912241,False,22,64,True,False

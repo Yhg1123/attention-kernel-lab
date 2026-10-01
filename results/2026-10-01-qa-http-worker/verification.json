@@ -1,0 +1,10 @@
+{
+  "requests": 168,
+  "paired_comparisons": 126,
+  "complete_unique_requests": true,
+  "finite_timings": true,
+  "prompt_pairs_equal": true,
+  "fixed_token_counts_equal": true,
+  "current_source_hashes_match": true,
+  "analyzer_sha256": "40f33911718d0e1d7b1fc8b94421bacf6ead67b5821a212dccb5d52ef05efcd8"
+}

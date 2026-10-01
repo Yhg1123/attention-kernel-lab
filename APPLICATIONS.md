@@ -2,6 +2,8 @@
 
 这个仓库可用于回答：**在目标机器和精确输入形状上，哪个注意力后端满足误差、额外显存和延迟要求？** 最新证据在 [负载实验报告](results/2026-10-01-workloads/README.md)。历史 `benchmark.py` 及 3050/5070 复测文件仍保留。
 
+现在也提供可运行的中文文档问答应用：[启动与完整请求测试](QA_TESTING.md)。它测量 HTTP 请求、检索、分词、模型生成、KV cache 和流式返回的整个过程。[应用测试报告](results/2026-10-01-qa-http-worker/README.md)给出用户实际等待时间；[预检记录](results/2026-10-01-qa-preflight/README.md)保留了无法正常回答的 FP16 / INT8 配置。算子结果必须经过这类应用验收才能用于部署决策。
+
 ## 使用方式
 
 先激活独立 Python 环境，RTX 50 系列使用 `python -m pip install -r requirements-cu128.txt`。

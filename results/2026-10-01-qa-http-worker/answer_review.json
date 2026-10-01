@@ -1,0 +1,235 @@
+{
+  "reviewer": "Assistant review of all distinct natural answers; not independent human adjudication.",
+  "unique_answers": 18,
+  "natural_requests": 144,
+  "reviews": [
+    {
+      "question_id": "combined",
+      "context": "long",
+      "answer": "青禾云基础版每月费用为39元，人工客服的工作时间为工作日的09:00至18:00。",
+      "variants": [
+        "cpu_eager_fp32",
+        "cuda_cudnn_bf16",
+        "cuda_eager_bf16",
+        "cuda_sdpa_bf16"
+      ],
+      "requests": 12,
+      "semantic_review_pass": true,
+      "note": "Answer checked against the fixture facts, including refund negation and retention assignments."
+    },
+    {
+      "question_id": "combined",
+      "context": "short",
+      "answer": "青禾云基础版每月价格为39元。\n青禾云人工客服的工作时间为工作日的09:00至18:00。",
+      "variants": [
+        "cuda_eager_bf16"
+      ],
+      "requests": 3,
+      "semantic_review_pass": true,
+      "note": "Answer checked against the fixture facts, including refund negation and retention assignments."
+    },
+    {
+      "question_id": "combined",
+      "context": "short",
+      "answer": "青禾云基础版每月费用为39元。\n青禾云人工客服的工作时间为工作日的09:00至18:00。",
+      "variants": [
+        "cpu_eager_fp32",
+        "cuda_cudnn_bf16",
+        "cuda_sdpa_bf16"
+      ],
+      "requests": 9,
+      "semantic_review_pass": true,
+      "note": "Answer checked against the fixture facts, including refund negation and retention assignments."
+    },
+    {
+      "question_id": "export",
+      "context": "long",
+      "answer": "青禾云单次最多可导出50000条记录。下载链接的有效期为24小时。",
+      "variants": [
+        "cpu_eager_fp32",
+        "cuda_cudnn_bf16",
+        "cuda_eager_bf16",
+        "cuda_sdpa_bf16"
+      ],
+      "requests": 12,
+      "semantic_review_pass": true,
+      "note": "Answer checked against the fixture facts, including refund negation and retention assignments."
+    },
+    {
+      "question_id": "export",
+      "context": "short",
+      "answer": "青禾云单次最多导出50000条记录。下载链接有效期为24小时。",
+      "variants": [
+        "cpu_eager_fp32"
+      ],
+      "requests": 3,
+      "semantic_review_pass": true,
+      "note": "Answer checked against the fixture facts, including refund negation and retention assignments."
+    },
+    {
+      "question_id": "export",
+      "context": "short",
+      "answer": "青禾云单次最多导出50000条记录。下载链接的有效期为24小时。",
+      "variants": [
+        "cuda_cudnn_bf16",
+        "cuda_sdpa_bf16"
+      ],
+      "requests": 6,
+      "semantic_review_pass": true,
+      "note": "Answer checked against the fixture facts, including refund negation and retention assignments."
+    },
+    {
+      "question_id": "export",
+      "context": "short",
+      "answer": "青禾云单次最多导出50000条记录，下载链接有效期为24小时。",
+      "variants": [
+        "cuda_eager_bf16"
+      ],
+      "requests": 3,
+      "semantic_review_pass": true,
+      "note": "Answer checked against the fixture facts, including refund negation and retention assignments."
+    },
+    {
+      "question_id": "price",
+      "context": "long",
+      "answer": "青禾云专业版每月费用为99元，包含200GB团队存储空间。",
+      "variants": [
+        "cpu_eager_fp32",
+        "cuda_cudnn_bf16",
+        "cuda_eager_bf16",
+        "cuda_sdpa_bf16"
+      ],
+      "requests": 12,
+      "semantic_review_pass": true,
+      "note": "Answer checked against the fixture facts, including refund negation and retention assignments."
+    },
+    {
+      "question_id": "price",
+      "context": "short",
+      "answer": "青禾云专业版每月费用为99元，包含200GB团队存储空间。",
+      "variants": [
+        "cpu_eager_fp32",
+        "cuda_cudnn_bf16",
+        "cuda_eager_bf16",
+        "cuda_sdpa_bf16"
+      ],
+      "requests": 12,
+      "semantic_review_pass": true,
+      "note": "Answer checked against the fixture facts, including refund negation and retention assignments."
+    },
+    {
+      "question_id": "refund",
+      "context": "long",
+      "answer": "不可以，因为已经创建了项目，所以不符合首次购买退款的条件。",
+      "variants": [
+        "cpu_eager_fp32",
+        "cuda_cudnn_bf16",
+        "cuda_eager_bf16",
+        "cuda_sdpa_bf16"
+      ],
+      "requests": 12,
+      "semantic_review_pass": true,
+      "note": "Answer checked against the fixture facts, including refund negation and retention assignments."
+    },
+    {
+      "question_id": "refund",
+      "context": "short",
+      "answer": "不能。",
+      "variants": [
+        "cuda_eager_bf16"
+      ],
+      "requests": 3,
+      "semantic_review_pass": true,
+      "note": "Answer checked against the fixture facts, including refund negation and retention assignments."
+    },
+    {
+      "question_id": "refund",
+      "context": "short",
+      "answer": "不能。已经有创建项目的订单不适用首次购买退款规则。",
+      "variants": [
+        "cpu_eager_fp32",
+        "cuda_cudnn_bf16",
+        "cuda_sdpa_bf16"
+      ],
+      "requests": 9,
+      "semantic_review_pass": true,
+      "note": "Answer checked against the fixture facts, including refund negation and retention assignments."
+    },
+    {
+      "question_id": "retention",
+      "context": "long",
+      "answer": "青禾云自动备份保留14天。回收站文件保留30天。",
+      "variants": [
+        "cuda_eager_bf16"
+      ],
+      "requests": 3,
+      "semantic_review_pass": true,
+      "note": "Answer checked against the fixture facts, including refund negation and retention assignments."
+    },
+    {
+      "question_id": "retention",
+      "context": "long",
+      "answer": "青禾云自动备份保留14天。回收站文件保留30天。超过30天后自动清理。",
+      "variants": [
+        "cpu_eager_fp32",
+        "cuda_cudnn_bf16",
+        "cuda_sdpa_bf16"
+      ],
+      "requests": 9,
+      "semantic_review_pass": true,
+      "note": "Answer checked against the fixture facts, including refund negation and retention assignments."
+    },
+    {
+      "question_id": "retention",
+      "context": "short",
+      "answer": "青禾云自动备份保留14天，回收站文件保留30天。",
+      "variants": [
+        "cpu_eager_fp32",
+        "cuda_cudnn_bf16",
+        "cuda_eager_bf16",
+        "cuda_sdpa_bf16"
+      ],
+      "requests": 12,
+      "semantic_review_pass": true,
+      "note": "Answer checked against the fixture facts, including refund negation and retention assignments."
+    },
+    {
+      "question_id": "unknown",
+      "context": "long",
+      "answer": "青禾云企业定制版的年度价格为199元。",
+      "variants": [
+        "cuda_eager_bf16"
+      ],
+      "requests": 3,
+      "semantic_review_pass": false,
+      "note": "Unsupported annual enterprise price: the documents contain no such answer."
+    },
+    {
+      "question_id": "unknown",
+      "context": "long",
+      "answer": "青禾云企业定制版的年度价格为99元。",
+      "variants": [
+        "cpu_eager_fp32",
+        "cuda_cudnn_bf16",
+        "cuda_sdpa_bf16"
+      ],
+      "requests": 9,
+      "semantic_review_pass": false,
+      "note": "Unsupported annual enterprise price: the documents contain no such answer."
+    },
+    {
+      "question_id": "unknown",
+      "context": "short",
+      "answer": "文档未提供。",
+      "variants": [
+        "cpu_eager_fp32",
+        "cuda_cudnn_bf16",
+        "cuda_eager_bf16",
+        "cuda_sdpa_bf16"
+      ],
+      "requests": 12,
+      "semantic_review_pass": true,
+      "note": "Answer checked against the fixture facts, including refund negation and retention assignments."
+    }
+  ]
+}

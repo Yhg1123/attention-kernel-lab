@@ -1,0 +1,38 @@
+{
+  "note": "CPU dispatcher operator names recorded inside the persistent inference worker. Includes prefill and 3 cached decode steps. Profiling is separate from benchmark timings; no latency claim is made from this trace.",
+  "torch": "2.10.0+cu128",
+  "precision_check": {
+    "variant": "cuda_eager_fp16",
+    "status": "rejected_invalid_logits",
+    "reason": "Invalid model logits; this precision/backend is unusable"
+  },
+  "records": [
+    {
+      "variant": "cuda_eager_bf16",
+      "question_id": "price",
+      "context": "long",
+      "max_new_tokens": 4,
+      "attention_ops": {}
+    },
+    {
+      "variant": "cuda_sdpa_bf16",
+      "question_id": "price",
+      "context": "long",
+      "max_new_tokens": 4,
+      "attention_ops": {
+        "aten::scaled_dot_product_attention": 112,
+        "aten::_scaled_dot_product_attention_math": 112
+      }
+    },
+    {
+      "variant": "cuda_cudnn_bf16",
+      "question_id": "price",
+      "context": "long",
+      "max_new_tokens": 4,
+      "attention_ops": {
+        "aten::scaled_dot_product_attention": 112,
+        "aten::_scaled_dot_product_cudnn_attention": 112
+      }
+    }
+  ]
+}

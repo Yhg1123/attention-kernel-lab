@@ -4,6 +4,14 @@ An evidence based comparison of causal attention implementations on 4 GB and 8 G
 
 这是一个可复现的注意力算子实验，不是自研 CUDA Kernel。项目比较 PyTorch eager 实现、`scaled_dot_product_attention` 自动选择、Math、Flash、Memory Efficient 和 cuDNN 后端，并记录每种输入规模下的性能、误差和支持情况。
 
+## 完整中文问答应用（2026-10-01）
+
+新增无需 AI API 的本地文档问答演示：网页提问、BM25 检索、固定版本 Qwen2.5-1.5B 模型、KV cache 生成和流式回答。测试从 HTTP 请求开始计时，记录首段文字、整段回答、显存和完整答案，并用固定输出长度排除回答长短的干扰。
+
+[启动演示与测试方法](QA_TESTING.md) · [正式应用测试报告](results/2026-10-01-qa-http-worker/README.md) · [失败配置及预检记录](results/2026-10-01-qa-preflight/README.md)
+
+三轮共完成 168 次请求。短资料自然回答的中位数：CPU FP32 **10.512 秒**，GPU BF16 eager **0.768 秒**；这是设备和精度同时变化的收益。只更换 GPU 注意力实现没有得到明显、稳定的提速；固定 64 token 时，SDPA 与 eager 的中位数差约 0.8–3.5%。短资料六题通过，长资料的无答案题仍编造价格。[面向实际使用的结论](results/2026-10-01-qa-http-worker/FINDINGS.md)
+
 ## 应用化扩展（2026-10-01）
 
 新增 prefill / 单 token KV-cache decode 的多形状、三种随机种子 profile，逐请求同步墙钟计时、P95、原始样本和约束策略导出，并提供带环境/源码/形状检查的 `MeasuredAttention` 调用接口。
