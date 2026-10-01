@@ -1,0 +1,1306 @@
+{
+  "schema_version": 2,
+  "environment": {
+    "python": "3.12.6",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "cpu": "AMD Ryzen 9 8945HX with Radeon Graphics",
+    "cpu_threads": 4,
+    "torch": "2.10.0+cu128",
+    "cuda_runtime": "12.8",
+    "driver": "582.05",
+    "gpu": "NVIDIA GeForce RTX 5070 Laptop GPU",
+    "gpu_capability": [
+      12,
+      0
+    ],
+    "quantized_engine": "onednn",
+    "matmul_allow_tf32": false
+  },
+  "environment_fingerprint": "0bb64e0ae1ba0ea00205886a6963fe0f5d9ae97f30f4a75204c8b864234f7927",
+  "profiler_source_sha256": {
+    "benchmark.py": "066f363fda1471b0edb711514c24074106bfa0f232330f7d7b73d5344b4ce283",
+    "bench_utils.py": "363ecef7417b761523c589a5b136f4674697efe3922186eb98a252b61f1dc466",
+    "profile_workloads.py": "c100fa4c822d4219ff3650e8b2492ffc3066be208b30ab76c946f0f613d6f5be",
+    "recommend.py": "521d8978d50c7318107da1c82a32fea521fe806299d948de24a3d8a0881687b5",
+    "select_profile.py": "dc79182c24d70ddfb9c3fc4ec809762965a62669e24745b71d0daf0a5fb91d22"
+  },
+  "summary_sha256": "ae5e5c215023f5f4f82382af9fb6f448e63580bc797c8e1a2a72b37c43aa897a",
+  "summary_hash_normalization": "LF newlines",
+  "constraints": {
+    "max_relative_error": 0.001,
+    "max_p95_ms": null,
+    "max_extra_mib": 1.0,
+    "max_model_mib": null,
+    "max_spread_ratio": null,
+    "min_trials": 3
+  },
+  "scope": "Measured choices only, for exact workload and environment. P95 is an empirical bound, not an SLA guarantee. Unknown shapes require measurement.",
+  "decisions": [
+    {
+      "workload": {
+        "device": "cuda",
+        "mode": "prefill",
+        "batch": "1",
+        "heads": "4",
+        "length": "256",
+        "head_dim": "64",
+        "dtype": "float32"
+      },
+      "status": "selected",
+      "rejected": [
+        {
+          "option": "sdpa_cudnn",
+          "reasons": [
+            "unsupported",
+            "insufficient_complete_trials",
+            "invalid_median_ms",
+            "invalid_p95_ms",
+            "invalid_relative_l2_error",
+            "invalid_spread_ratio",
+            "relative_l2_error_constraint",
+            "peak_extra_mib_constraint"
+          ]
+        },
+        {
+          "option": "sdpa_math",
+          "reasons": [
+            "peak_extra_mib_constraint"
+          ]
+        },
+        {
+          "option": "eager",
+          "reasons": [
+            "peak_extra_mib_constraint"
+          ]
+        },
+        {
+          "option": "sdpa_flash",
+          "reasons": [
+            "unsupported",
+            "insufficient_complete_trials",
+            "invalid_median_ms",
+            "invalid_p95_ms",
+            "invalid_relative_l2_error",
+            "invalid_spread_ratio",
+            "relative_l2_error_constraint",
+            "peak_extra_mib_constraint"
+          ]
+        }
+      ],
+      "selected": "sdpa_auto",
+      "measured_median_ms": 0.0515,
+      "worst_trial_p95_ms": 0.0716,
+      "worst_relative_l2_error": 4.909608719572134e-07,
+      "feasible_options": [
+        "sdpa_efficient",
+        "sdpa_auto"
+      ]
+    },
+    {
+      "workload": {
+        "device": "cuda",
+        "mode": "prefill",
+        "batch": "1",
+        "heads": "4",
+        "length": "256",
+        "head_dim": "64",
+        "dtype": "float16"
+      },
+      "status": "selected",
+      "rejected": [
+        {
+          "option": "eager",
+          "reasons": [
+            "peak_extra_mib_constraint"
+          ]
+        },
+        {
+          "option": "sdpa_math",
+          "reasons": [
+            "peak_extra_mib_constraint"
+          ]
+        },
+        {
+          "option": "sdpa_flash",
+          "reasons": [
+            "unsupported",
+            "insufficient_complete_trials",
+            "invalid_median_ms",
+            "invalid_p95_ms",
+            "invalid_relative_l2_error",
+            "invalid_spread_ratio",
+            "relative_l2_error_constraint",
+            "peak_extra_mib_constraint"
+          ]
+        }
+      ],
+      "selected": "sdpa_auto",
+      "measured_median_ms": 0.033,
+      "worst_trial_p95_ms": 0.0477,
+      "worst_relative_l2_error": 0.00040666889981366694,
+      "feasible_options": [
+        "sdpa_efficient",
+        "sdpa_cudnn",
+        "sdpa_auto"
+      ]
+    },
+    {
+      "workload": {
+        "device": "cuda",
+        "mode": "decode",
+        "batch": "1",
+        "heads": "4",
+        "length": "256",
+        "head_dim": "64",
+        "dtype": "float16"
+      },
+      "status": "selected",
+      "rejected": [
+        {
+          "option": "sdpa_flash",
+          "reasons": [
+            "unsupported",
+            "insufficient_complete_trials",
+            "invalid_median_ms",
+            "invalid_p95_ms",
+            "invalid_relative_l2_error",
+            "invalid_spread_ratio",
+            "relative_l2_error_constraint",
+            "peak_extra_mib_constraint"
+          ]
+        }
+      ],
+      "selected": "sdpa_auto",
+      "measured_median_ms": 0.0621,
+      "worst_trial_p95_ms": 0.174,
+      "worst_relative_l2_error": 0.0004764901823364198,
+      "feasible_options": [
+        "sdpa_math",
+        "sdpa_cudnn",
+        "sdpa_auto",
+        "eager",
+        "sdpa_efficient"
+      ]
+    },
+    {
+      "workload": {
+        "device": "cuda",
+        "mode": "decode",
+        "batch": "1",
+        "heads": "4",
+        "length": "256",
+        "head_dim": "64",
+        "dtype": "float32"
+      },
+      "status": "selected",
+      "rejected": [
+        {
+          "option": "sdpa_flash",
+          "reasons": [
+            "unsupported",
+            "insufficient_complete_trials",
+            "invalid_median_ms",
+            "invalid_p95_ms",
+            "invalid_relative_l2_error",
+            "invalid_spread_ratio",
+            "relative_l2_error_constraint",
+            "peak_extra_mib_constraint"
+          ]
+        },
+        {
+          "option": "sdpa_cudnn",
+          "reasons": [
+            "unsupported",
+            "insufficient_complete_trials",
+            "invalid_median_ms",
+            "invalid_p95_ms",
+            "invalid_relative_l2_error",
+            "invalid_spread_ratio",
+            "relative_l2_error_constraint",
+            "peak_extra_mib_constraint"
+          ]
+        }
+      ],
+      "selected": "sdpa_auto",
+      "measured_median_ms": 0.07644999999999999,
+      "worst_trial_p95_ms": 0.1295,
+      "worst_relative_l2_error": 6.033302497598925e-07,
+      "feasible_options": [
+        "sdpa_math",
+        "eager",
+        "sdpa_auto",
+        "sdpa_efficient"
+      ]
+    },
+    {
+      "workload": {
+        "device": "cuda",
+        "mode": "prefill",
+        "batch": "1",
+        "heads": "4",
+        "length": "2048",
+        "head_dim": "64",
+        "dtype": "float16"
+      },
+      "status": "selected",
+      "rejected": [
+        {
+          "option": "eager",
+          "reasons": [
+            "peak_extra_mib_constraint"
+          ]
+        },
+        {
+          "option": "sdpa_math",
+          "reasons": [
+            "peak_extra_mib_constraint"
+          ]
+        },
+        {
+          "option": "sdpa_cudnn",
+          "reasons": [
+            "peak_extra_mib_constraint"
+          ]
+        },
+        {
+          "option": "sdpa_flash",
+          "reasons": [
+            "unsupported",
+            "insufficient_complete_trials",
+            "invalid_median_ms",
+            "invalid_p95_ms",
+            "invalid_relative_l2_error",
+            "invalid_spread_ratio",
+            "relative_l2_error_constraint",
+            "peak_extra_mib_constraint"
+          ]
+        }
+      ],
+      "selected": "sdpa_auto",
+      "measured_median_ms": 0.21465,
+      "worst_trial_p95_ms": 0.2516,
+      "worst_relative_l2_error": 0.000426554586738348,
+      "feasible_options": [
+        "sdpa_efficient",
+        "sdpa_auto"
+      ]
+    },
+    {
+      "workload": {
+        "device": "cuda",
+        "mode": "prefill",
+        "batch": "1",
+        "heads": "4",
+        "length": "2048",
+        "head_dim": "64",
+        "dtype": "float32"
+      },
+      "status": "no_match",
+      "rejected": [
+        {
+          "option": "sdpa_cudnn",
+          "reasons": [
+            "unsupported",
+            "insufficient_complete_trials",
+            "invalid_median_ms",
+            "invalid_p95_ms",
+            "invalid_relative_l2_error",
+            "invalid_spread_ratio",
+            "relative_l2_error_constraint",
+            "peak_extra_mib_constraint"
+          ]
+        },
+        {
+          "option": "eager",
+          "reasons": [
+            "peak_extra_mib_constraint"
+          ]
+        },
+        {
+          "option": "sdpa_auto",
+          "reasons": [
+            "peak_extra_mib_constraint"
+          ]
+        },
+        {
+          "option": "sdpa_flash",
+          "reasons": [
+            "unsupported",
+            "insufficient_complete_trials",
+            "invalid_median_ms",
+            "invalid_p95_ms",
+            "invalid_relative_l2_error",
+            "invalid_spread_ratio",
+            "relative_l2_error_constraint",
+            "peak_extra_mib_constraint"
+          ]
+        },
+        {
+          "option": "sdpa_efficient",
+          "reasons": [
+            "peak_extra_mib_constraint"
+          ]
+        },
+        {
+          "option": "sdpa_math",
+          "reasons": [
+            "peak_extra_mib_constraint"
+          ]
+        }
+      ]
+    },
+    {
+      "workload": {
+        "device": "cuda",
+        "mode": "prefill",
+        "batch": "4",
+        "heads": "4",
+        "length": "256",
+        "head_dim": "64",
+        "dtype": "float16"
+      },
+      "status": "selected",
+      "rejected": [
+        {
+          "option": "sdpa_flash",
+          "reasons": [
+            "unsupported",
+            "insufficient_complete_trials",
+            "invalid_median_ms",
+            "invalid_p95_ms",
+            "invalid_relative_l2_error",
+            "invalid_spread_ratio",
+            "relative_l2_error_constraint",
+            "peak_extra_mib_constraint"
+          ]
+        },
+        {
+          "option": "eager",
+          "reasons": [
+            "peak_extra_mib_constraint"
+          ]
+        },
+        {
+          "option": "sdpa_math",
+          "reasons": [
+            "peak_extra_mib_constraint"
+          ]
+        }
+      ],
+      "selected": "sdpa_auto",
+      "measured_median_ms": 0.0352,
+      "worst_trial_p95_ms": 0.1087,
+      "worst_relative_l2_error": 0.00040721442201174796,
+      "feasible_options": [
+        "sdpa_cudnn",
+        "sdpa_auto",
+        "sdpa_efficient"
+      ]
+    },
+    {
+      "workload": {
+        "device": "cuda",
+        "mode": "prefill",
+        "batch": "4",
+        "heads": "4",
+        "length": "256",
+        "head_dim": "64",
+        "dtype": "float32"
+      },
+      "status": "selected",
+      "rejected": [
+        {
+          "option": "eager",
+          "reasons": [
+            "peak_extra_mib_constraint"
+          ]
+        },
+        {
+          "option": "sdpa_flash",
+          "reasons": [
+            "unsupported",
+            "insufficient_complete_trials",
+            "invalid_median_ms",
+            "invalid_p95_ms",
+            "invalid_relative_l2_error",
+            "invalid_spread_ratio",
+            "relative_l2_error_constraint",
+            "peak_extra_mib_constraint"
+          ]
+        },
+        {
+          "option": "sdpa_math",
+          "reasons": [
+            "peak_extra_mib_constraint"
+          ]
+        },
+        {
+          "option": "sdpa_cudnn",
+          "reasons": [
+            "unsupported",
+            "insufficient_complete_trials",
+            "invalid_median_ms",
+            "invalid_p95_ms",
+            "invalid_relative_l2_error",
+            "invalid_spread_ratio",
+            "relative_l2_error_constraint",
+            "peak_extra_mib_constraint"
+          ]
+        }
+      ],
+      "selected": "sdpa_auto",
+      "measured_median_ms": 0.065,
+      "worst_trial_p95_ms": 0.1207,
+      "worst_relative_l2_error": 4.698780173839623e-07,
+      "feasible_options": [
+        "sdpa_auto",
+        "sdpa_efficient"
+      ]
+    },
+    {
+      "workload": {
+        "device": "cuda",
+        "mode": "decode",
+        "batch": "4",
+        "heads": "4",
+        "length": "1024",
+        "head_dim": "64",
+        "dtype": "float32"
+      },
+      "status": "selected",
+      "rejected": [
+        {
+          "option": "sdpa_flash",
+          "reasons": [
+            "unsupported",
+            "insufficient_complete_trials",
+            "invalid_median_ms",
+            "invalid_p95_ms",
+            "invalid_relative_l2_error",
+            "invalid_spread_ratio",
+            "relative_l2_error_constraint",
+            "peak_extra_mib_constraint"
+          ]
+        },
+        {
+          "option": "sdpa_cudnn",
+          "reasons": [
+            "unsupported",
+            "insufficient_complete_trials",
+            "invalid_median_ms",
+            "invalid_p95_ms",
+            "invalid_relative_l2_error",
+            "invalid_spread_ratio",
+            "relative_l2_error_constraint",
+            "peak_extra_mib_constraint"
+          ]
+        },
+        {
+          "option": "sdpa_math",
+          "reasons": [
+            "peak_extra_mib_constraint"
+          ]
+        }
+      ],
+      "selected": "eager",
+      "measured_median_ms": 0.07665,
+      "worst_trial_p95_ms": 0.2586,
+      "worst_relative_l2_error": 0.0,
+      "feasible_options": [
+        "sdpa_auto",
+        "eager",
+        "sdpa_efficient"
+      ]
+    },
+    {
+      "workload": {
+        "device": "cuda",
+        "mode": "decode",
+        "batch": "4",
+        "heads": "4",
+        "length": "1024",
+        "head_dim": "64",
+        "dtype": "float16"
+      },
+      "status": "selected",
+      "rejected": [
+        {
+          "option": "sdpa_flash",
+          "reasons": [
+            "unsupported",
+            "insufficient_complete_trials",
+            "invalid_median_ms",
+            "invalid_p95_ms",
+            "invalid_relative_l2_error",
+            "invalid_spread_ratio",
+            "relative_l2_error_constraint",
+            "peak_extra_mib_constraint"
+          ]
+        },
+        {
+          "option": "sdpa_math",
+          "reasons": [
+            "peak_extra_mib_constraint"
+          ]
+        }
+      ],
+      "selected": "sdpa_auto",
+      "measured_median_ms": 0.06764999999999999,
+      "worst_trial_p95_ms": 0.1177,
+      "worst_relative_l2_error": 0.0004818829183932394,
+      "feasible_options": [
+        "sdpa_efficient",
+        "sdpa_cudnn",
+        "sdpa_auto",
+        "eager"
+      ]
+    },
+    {
+      "workload": {
+        "device": "cuda",
+        "mode": "prefill",
+        "batch": "4",
+        "heads": "4",
+        "length": "1024",
+        "head_dim": "64",
+        "dtype": "float32"
+      },
+      "status": "no_match",
+      "rejected": [
+        {
+          "option": "sdpa_cudnn",
+          "reasons": [
+            "unsupported",
+            "insufficient_complete_trials",
+            "invalid_median_ms",
+            "invalid_p95_ms",
+            "invalid_relative_l2_error",
+            "invalid_spread_ratio",
+            "relative_l2_error_constraint",
+            "peak_extra_mib_constraint"
+          ]
+        },
+        {
+          "option": "sdpa_efficient",
+          "reasons": [
+            "peak_extra_mib_constraint"
+          ]
+        },
+        {
+          "option": "sdpa_auto",
+          "reasons": [
+            "peak_extra_mib_constraint"
+          ]
+        },
+        {
+          "option": "eager",
+          "reasons": [
+            "peak_extra_mib_constraint"
+          ]
+        },
+        {
+          "option": "sdpa_flash",
+          "reasons": [
+            "unsupported",
+            "insufficient_complete_trials",
+            "invalid_median_ms",
+            "invalid_p95_ms",
+            "invalid_relative_l2_error",
+            "invalid_spread_ratio",
+            "relative_l2_error_constraint",
+            "peak_extra_mib_constraint"
+          ]
+        },
+        {
+          "option": "sdpa_math",
+          "reasons": [
+            "peak_extra_mib_constraint"
+          ]
+        }
+      ]
+    },
+    {
+      "workload": {
+        "device": "cuda",
+        "mode": "prefill",
+        "batch": "4",
+        "heads": "4",
+        "length": "1024",
+        "head_dim": "64",
+        "dtype": "float16"
+      },
+      "status": "no_match",
+      "rejected": [
+        {
+          "option": "sdpa_efficient",
+          "reasons": [
+            "peak_extra_mib_constraint"
+          ]
+        },
+        {
+          "option": "sdpa_flash",
+          "reasons": [
+            "unsupported",
+            "insufficient_complete_trials",
+            "invalid_median_ms",
+            "invalid_p95_ms",
+            "invalid_relative_l2_error",
+            "invalid_spread_ratio",
+            "relative_l2_error_constraint",
+            "peak_extra_mib_constraint"
+          ]
+        },
+        {
+          "option": "sdpa_math",
+          "reasons": [
+            "peak_extra_mib_constraint"
+          ]
+        },
+        {
+          "option": "eager",
+          "reasons": [
+            "peak_extra_mib_constraint"
+          ]
+        },
+        {
+          "option": "sdpa_auto",
+          "reasons": [
+            "peak_extra_mib_constraint"
+          ]
+        },
+        {
+          "option": "sdpa_cudnn",
+          "reasons": [
+            "peak_extra_mib_constraint"
+          ]
+        }
+      ]
+    },
+    {
+      "workload": {
+        "device": "cuda",
+        "mode": "decode",
+        "batch": "1",
+        "heads": "4",
+        "length": "1024",
+        "head_dim": "64",
+        "dtype": "float32"
+      },
+      "status": "selected",
+      "rejected": [
+        {
+          "option": "sdpa_math",
+          "reasons": [
+            "peak_extra_mib_constraint"
+          ]
+        },
+        {
+          "option": "sdpa_flash",
+          "reasons": [
+            "unsupported",
+            "insufficient_complete_trials",
+            "invalid_median_ms",
+            "invalid_p95_ms",
+            "invalid_relative_l2_error",
+            "invalid_spread_ratio",
+            "relative_l2_error_constraint",
+            "peak_extra_mib_constraint"
+          ]
+        },
+        {
+          "option": "sdpa_cudnn",
+          "reasons": [
+            "unsupported",
+            "insufficient_complete_trials",
+            "invalid_median_ms",
+            "invalid_p95_ms",
+            "invalid_relative_l2_error",
+            "invalid_spread_ratio",
+            "relative_l2_error_constraint",
+            "peak_extra_mib_constraint"
+          ]
+        }
+      ],
+      "selected": "eager",
+      "measured_median_ms": 0.07465,
+      "worst_trial_p95_ms": 0.1397,
+      "worst_relative_l2_error": 0.0,
+      "feasible_options": [
+        "eager",
+        "sdpa_auto",
+        "sdpa_efficient"
+      ]
+    },
+    {
+      "workload": {
+        "device": "cuda",
+        "mode": "decode",
+        "batch": "1",
+        "heads": "4",
+        "length": "1024",
+        "head_dim": "64",
+        "dtype": "float16"
+      },
+      "status": "selected",
+      "rejected": [
+        {
+          "option": "sdpa_flash",
+          "reasons": [
+            "unsupported",
+            "insufficient_complete_trials",
+            "invalid_median_ms",
+            "invalid_p95_ms",
+            "invalid_relative_l2_error",
+            "invalid_spread_ratio",
+            "relative_l2_error_constraint",
+            "peak_extra_mib_constraint"
+          ]
+        },
+        {
+          "option": "eager",
+          "reasons": [
+            "relative_l2_error_constraint"
+          ]
+        },
+        {
+          "option": "sdpa_math",
+          "reasons": [
+            "peak_extra_mib_constraint"
+          ]
+        }
+      ],
+      "selected": "sdpa_auto",
+      "measured_median_ms": 0.0597,
+      "worst_trial_p95_ms": 0.0658,
+      "worst_relative_l2_error": 0.0004607654409483075,
+      "feasible_options": [
+        "sdpa_cudnn",
+        "sdpa_auto",
+        "sdpa_efficient"
+      ]
+    },
+    {
+      "workload": {
+        "device": "cuda",
+        "mode": "decode",
+        "batch": "4",
+        "heads": "4",
+        "length": "2048",
+        "head_dim": "64",
+        "dtype": "float16"
+      },
+      "status": "selected",
+      "rejected": [
+        {
+          "option": "sdpa_math",
+          "reasons": [
+            "peak_extra_mib_constraint"
+          ]
+        },
+        {
+          "option": "sdpa_flash",
+          "reasons": [
+            "unsupported",
+            "insufficient_complete_trials",
+            "invalid_median_ms",
+            "invalid_p95_ms",
+            "invalid_relative_l2_error",
+            "invalid_spread_ratio",
+            "relative_l2_error_constraint",
+            "peak_extra_mib_constraint"
+          ]
+        }
+      ],
+      "selected": "sdpa_cudnn",
+      "measured_median_ms": 0.0696,
+      "worst_trial_p95_ms": 0.1122,
+      "worst_relative_l2_error": 0.00047604498104192317,
+      "feasible_options": [
+        "eager",
+        "sdpa_cudnn",
+        "sdpa_auto",
+        "sdpa_efficient"
+      ]
+    },
+    {
+      "workload": {
+        "device": "cuda",
+        "mode": "decode",
+        "batch": "4",
+        "heads": "4",
+        "length": "2048",
+        "head_dim": "64",
+        "dtype": "float32"
+      },
+      "status": "selected",
+      "rejected": [
+        {
+          "option": "sdpa_cudnn",
+          "reasons": [
+            "unsupported",
+            "insufficient_complete_trials",
+            "invalid_median_ms",
+            "invalid_p95_ms",
+            "invalid_relative_l2_error",
+            "invalid_spread_ratio",
+            "relative_l2_error_constraint",
+            "peak_extra_mib_constraint"
+          ]
+        },
+        {
+          "option": "sdpa_math",
+          "reasons": [
+            "peak_extra_mib_constraint"
+          ]
+        },
+        {
+          "option": "sdpa_flash",
+          "reasons": [
+            "unsupported",
+            "insufficient_complete_trials",
+            "invalid_median_ms",
+            "invalid_p95_ms",
+            "invalid_relative_l2_error",
+            "invalid_spread_ratio",
+            "relative_l2_error_constraint",
+            "peak_extra_mib_constraint"
+          ]
+        }
+      ],
+      "selected": "eager",
+      "measured_median_ms": 0.07805000000000001,
+      "worst_trial_p95_ms": 0.1094,
+      "worst_relative_l2_error": 0.0,
+      "feasible_options": [
+        "sdpa_auto",
+        "eager",
+        "sdpa_efficient"
+      ]
+    },
+    {
+      "workload": {
+        "device": "cuda",
+        "mode": "decode",
+        "batch": "4",
+        "heads": "4",
+        "length": "256",
+        "head_dim": "64",
+        "dtype": "float16"
+      },
+      "status": "selected",
+      "rejected": [
+        {
+          "option": "sdpa_flash",
+          "reasons": [
+            "unsupported",
+            "insufficient_complete_trials",
+            "invalid_median_ms",
+            "invalid_p95_ms",
+            "invalid_relative_l2_error",
+            "invalid_spread_ratio",
+            "relative_l2_error_constraint",
+            "peak_extra_mib_constraint"
+          ]
+        },
+        {
+          "option": "sdpa_math",
+          "reasons": [
+            "peak_extra_mib_constraint"
+          ]
+        }
+      ],
+      "selected": "sdpa_auto",
+      "measured_median_ms": 0.0428,
+      "worst_trial_p95_ms": 0.1158,
+      "worst_relative_l2_error": 0.00044844995136372745,
+      "feasible_options": [
+        "eager",
+        "sdpa_cudnn",
+        "sdpa_efficient",
+        "sdpa_auto"
+      ]
+    },
+    {
+      "workload": {
+        "device": "cuda",
+        "mode": "decode",
+        "batch": "4",
+        "heads": "4",
+        "length": "256",
+        "head_dim": "64",
+        "dtype": "float32"
+      },
+      "status": "selected",
+      "rejected": [
+        {
+          "option": "sdpa_math",
+          "reasons": [
+            "peak_extra_mib_constraint"
+          ]
+        },
+        {
+          "option": "sdpa_flash",
+          "reasons": [
+            "unsupported",
+            "insufficient_complete_trials",
+            "invalid_median_ms",
+            "invalid_p95_ms",
+            "invalid_relative_l2_error",
+            "invalid_spread_ratio",
+            "relative_l2_error_constraint",
+            "peak_extra_mib_constraint"
+          ]
+        },
+        {
+          "option": "sdpa_cudnn",
+          "reasons": [
+            "unsupported",
+            "insufficient_complete_trials",
+            "invalid_median_ms",
+            "invalid_p95_ms",
+            "invalid_relative_l2_error",
+            "invalid_spread_ratio",
+            "relative_l2_error_constraint",
+            "peak_extra_mib_constraint"
+          ]
+        }
+      ],
+      "selected": "sdpa_auto",
+      "measured_median_ms": 0.04335,
+      "worst_trial_p95_ms": 0.1003,
+      "worst_relative_l2_error": 7.449597205777536e-07,
+      "feasible_options": [
+        "sdpa_auto",
+        "eager",
+        "sdpa_efficient"
+      ]
+    },
+    {
+      "workload": {
+        "device": "cuda",
+        "mode": "decode",
+        "batch": "1",
+        "heads": "4",
+        "length": "2048",
+        "head_dim": "64",
+        "dtype": "float32"
+      },
+      "status": "selected",
+      "rejected": [
+        {
+          "option": "sdpa_cudnn",
+          "reasons": [
+            "unsupported",
+            "insufficient_complete_trials",
+            "invalid_median_ms",
+            "invalid_p95_ms",
+            "invalid_relative_l2_error",
+            "invalid_spread_ratio",
+            "relative_l2_error_constraint",
+            "peak_extra_mib_constraint"
+          ]
+        },
+        {
+          "option": "sdpa_flash",
+          "reasons": [
+            "unsupported",
+            "insufficient_complete_trials",
+            "invalid_median_ms",
+            "invalid_p95_ms",
+            "invalid_relative_l2_error",
+            "invalid_spread_ratio",
+            "relative_l2_error_constraint",
+            "peak_extra_mib_constraint"
+          ]
+        },
+        {
+          "option": "sdpa_math",
+          "reasons": [
+            "peak_extra_mib_constraint"
+          ]
+        }
+      ],
+      "selected": "eager",
+      "measured_median_ms": 0.1178,
+      "worst_trial_p95_ms": 0.2575,
+      "worst_relative_l2_error": 0.0,
+      "feasible_options": [
+        "sdpa_auto",
+        "eager",
+        "sdpa_efficient"
+      ]
+    },
+    {
+      "workload": {
+        "device": "cuda",
+        "mode": "decode",
+        "batch": "1",
+        "heads": "4",
+        "length": "2048",
+        "head_dim": "64",
+        "dtype": "float16"
+      },
+      "status": "selected",
+      "rejected": [
+        {
+          "option": "sdpa_flash",
+          "reasons": [
+            "unsupported",
+            "insufficient_complete_trials",
+            "invalid_median_ms",
+            "invalid_p95_ms",
+            "invalid_relative_l2_error",
+            "invalid_spread_ratio",
+            "relative_l2_error_constraint",
+            "peak_extra_mib_constraint"
+          ]
+        },
+        {
+          "option": "sdpa_math",
+          "reasons": [
+            "peak_extra_mib_constraint"
+          ]
+        }
+      ],
+      "selected": "sdpa_cudnn",
+      "measured_median_ms": 0.0993,
+      "worst_trial_p95_ms": 0.1774,
+      "worst_relative_l2_error": 0.0005004463600926101,
+      "feasible_options": [
+        "eager",
+        "sdpa_efficient",
+        "sdpa_auto",
+        "sdpa_cudnn"
+      ]
+    },
+    {
+      "workload": {
+        "device": "cuda",
+        "mode": "prefill",
+        "batch": "4",
+        "heads": "4",
+        "length": "2048",
+        "head_dim": "64",
+        "dtype": "float32"
+      },
+      "status": "no_match",
+      "rejected": [
+        {
+          "option": "sdpa_auto",
+          "reasons": [
+            "peak_extra_mib_constraint"
+          ]
+        },
+        {
+          "option": "sdpa_efficient",
+          "reasons": [
+            "peak_extra_mib_constraint"
+          ]
+        },
+        {
+          "option": "eager",
+          "reasons": [
+            "peak_extra_mib_constraint"
+          ]
+        },
+        {
+          "option": "sdpa_flash",
+          "reasons": [
+            "unsupported",
+            "insufficient_complete_trials",
+            "invalid_median_ms",
+            "invalid_p95_ms",
+            "invalid_relative_l2_error",
+            "invalid_spread_ratio",
+            "relative_l2_error_constraint",
+            "peak_extra_mib_constraint"
+          ]
+        },
+        {
+          "option": "sdpa_math",
+          "reasons": [
+            "peak_extra_mib_constraint"
+          ]
+        },
+        {
+          "option": "sdpa_cudnn",
+          "reasons": [
+            "unsupported",
+            "insufficient_complete_trials",
+            "invalid_median_ms",
+            "invalid_p95_ms",
+            "invalid_relative_l2_error",
+            "invalid_spread_ratio",
+            "relative_l2_error_constraint",
+            "peak_extra_mib_constraint"
+          ]
+        }
+      ]
+    },
+    {
+      "workload": {
+        "device": "cuda",
+        "mode": "prefill",
+        "batch": "4",
+        "heads": "4",
+        "length": "2048",
+        "head_dim": "64",
+        "dtype": "float16"
+      },
+      "status": "no_match",
+      "rejected": [
+        {
+          "option": "sdpa_cudnn",
+          "reasons": [
+            "peak_extra_mib_constraint"
+          ]
+        },
+        {
+          "option": "sdpa_efficient",
+          "reasons": [
+            "peak_extra_mib_constraint"
+          ]
+        },
+        {
+          "option": "sdpa_auto",
+          "reasons": [
+            "peak_extra_mib_constraint"
+          ]
+        },
+        {
+          "option": "sdpa_flash",
+          "reasons": [
+            "unsupported",
+            "insufficient_complete_trials",
+            "invalid_median_ms",
+            "invalid_p95_ms",
+            "invalid_relative_l2_error",
+            "invalid_spread_ratio",
+            "relative_l2_error_constraint",
+            "peak_extra_mib_constraint"
+          ]
+        },
+        {
+          "option": "eager",
+          "reasons": [
+            "peak_extra_mib_constraint"
+          ]
+        },
+        {
+          "option": "sdpa_math",
+          "reasons": [
+            "peak_extra_mib_constraint"
+          ]
+        }
+      ]
+    },
+    {
+      "workload": {
+        "device": "cuda",
+        "mode": "prefill",
+        "batch": "1",
+        "heads": "4",
+        "length": "1024",
+        "head_dim": "64",
+        "dtype": "float32"
+      },
+      "status": "selected",
+      "rejected": [
+        {
+          "option": "sdpa_cudnn",
+          "reasons": [
+            "unsupported",
+            "insufficient_complete_trials",
+            "invalid_median_ms",
+            "invalid_p95_ms",
+            "invalid_relative_l2_error",
+            "invalid_spread_ratio",
+            "relative_l2_error_constraint",
+            "peak_extra_mib_constraint"
+          ]
+        },
+        {
+          "option": "eager",
+          "reasons": [
+            "peak_extra_mib_constraint"
+          ]
+        },
+        {
+          "option": "sdpa_flash",
+          "reasons": [
+            "unsupported",
+            "insufficient_complete_trials",
+            "invalid_median_ms",
+            "invalid_p95_ms",
+            "invalid_relative_l2_error",
+            "invalid_spread_ratio",
+            "relative_l2_error_constraint",
+            "peak_extra_mib_constraint"
+          ]
+        },
+        {
+          "option": "sdpa_math",
+          "reasons": [
+            "peak_extra_mib_constraint"
+          ]
+        }
+      ],
+      "selected": "sdpa_auto",
+      "measured_median_ms": 0.2056,
+      "worst_trial_p95_ms": 0.2202,
+      "worst_relative_l2_error": 5.721256570723199e-07,
+      "feasible_options": [
+        "sdpa_auto",
+        "sdpa_efficient"
+      ]
+    },
+    {
+      "workload": {
+        "device": "cuda",
+        "mode": "prefill",
+        "batch": "1",
+        "heads": "4",
+        "length": "1024",
+        "head_dim": "64",
+        "dtype": "float16"
+      },
+      "status": "selected",
+      "rejected": [
+        {
+          "option": "sdpa_math",
+          "reasons": [
+            "peak_extra_mib_constraint"
+          ]
+        },
+        {
+          "option": "eager",
+          "reasons": [
+            "peak_extra_mib_constraint"
+          ]
+        },
+        {
+          "option": "sdpa_flash",
+          "reasons": [
+            "unsupported",
+            "insufficient_complete_trials",
+            "invalid_median_ms",
+            "invalid_p95_ms",
+            "invalid_relative_l2_error",
+            "invalid_spread_ratio",
+            "relative_l2_error_constraint",
+            "peak_extra_mib_constraint"
+          ]
+        }
+      ],
+      "selected": "sdpa_cudnn",
+      "measured_median_ms": 0.0767,
+      "worst_trial_p95_ms": 0.0821,
+      "worst_relative_l2_error": 0.00042894843500107527,
+      "feasible_options": [
+        "sdpa_cudnn",
+        "sdpa_efficient",
+        "sdpa_auto"
+      ]
+    }
+  ]
+}

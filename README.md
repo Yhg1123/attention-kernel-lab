@@ -4,6 +4,14 @@ An evidence based comparison of causal attention implementations on 4 GB and 8 G
 
 这是一个可复现的注意力算子实验，不是自研 CUDA Kernel。项目比较 PyTorch eager 实现、`scaled_dot_product_attention` 自动选择、Math、Flash、Memory Efficient 和 cuDNN 后端，并记录每种输入规模下的性能、误差和支持情况。
 
+## 应用化扩展（2026-10-01）
+
+新增 prefill / 单 token KV-cache decode 的多形状、三种随机种子 profile，逐请求同步墙钟计时、P95、原始样本和约束策略导出，并提供带环境/源码/形状检查的 `MeasuredAttention` 调用接口。
+
+本机 batch=4、长度 2048、FP16 的 prefill 中，cuDNN 相对 eager 的三轮中位数比值为 **16.21×**，操作峰值增量 **264 → 4.001 MiB**；对应单 token decode 的收益约 **1.18×**。两类工作负载需要分开选型。
+
+[应用方式与代码示例](APPLICATIONS.md) · [完整负载实验](results/2026-10-01-workloads/README.md)
+
 ## 核心问题
 
 1. 在小显存 GPU 上，融合注意力后端能否同时降低延迟和临时显存？
