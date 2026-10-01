@@ -1,6 +1,6 @@
 # Attention Kernel Lab | 注意力算子性能实验
 
-An evidence based comparison of causal attention implementations on a 4 GB laptop GPU. This project measures **latency, temporary PyTorch memory, numerical error, and backend availability** together. It also includes a constraint based selector that chooses only among configurations actually measured on this machine.
+An evidence based comparison of causal attention implementations on 4 GB and 8 GB laptop GPUs. This project measures **latency, temporary PyTorch memory, numerical error, and backend availability** together. It also includes a constraint based selector that chooses only among configurations actually measured on this machine.
 
 这是一个可复现的注意力算子实验，不是自研 CUDA Kernel。项目比较 PyTorch eager 实现、`scaled_dot_product_attention` 自动选择、Math、Flash、Memory Efficient 和 cuDNN 后端，并记录每种输入规模下的性能、误差和支持情况。
 
@@ -26,7 +26,7 @@ An evidence based comparison of causal attention implementations on a 4 GB lapto
 
 `sdpa_auto` 的具体内部后端由 PyTorch 决定，本实验不把它猜测为 Flash。强制选择某后端失败时，CSV 中记录 `unsupported`，不补造结果。速度比仅在**相同形状与数据类型**下相对 eager 基线计算。
 
-## 本机实测摘要
+## 原始 RTX 3050 实测摘要
 
 环境：AMD Ryzen 5 5600H、NVIDIA RTX 3050 Laptop GPU 4 GB、驱动 546.30、Windows 11、Python 3.12.6、PyTorch 2.5.1+cu121。以下结果来自 `results/results.csv`，是这台机器上的一次基准运行。
 
@@ -40,7 +40,26 @@ An evidence based comparison of causal attention implementations on a 4 GB lapto
 
 在长度 1024、FP16 配置下，eager 的峰值增量为 18 MiB，cuDNN 为约 0.5 MiB。这个指标只覆盖 PyTorch allocator 的本次操作峰值增量，不等于进程显存或整个模型显存。Flash 后端在本机所有测试形状下都返回 `No available kernel`；cuDNN 在 FP16 可用、FP32 不可用。
 
-## 可复现运行
+## RTX 5070 Laptop 复测（2026-10-01）
+
+新增环境：Ryzen 9 8945HX、RTX 5070 Laptop 8 GB、驱动 582.05、Python 3.12.6、PyTorch 2.10.0+cu128。每个配置仍预热 50 次、计时 100 次，独立运行三轮。原始 3050 文件保留不变。
+
+三轮均完成 48 个配置（36 可用、12 不支持），正确性检查通过。Flash 在当前 Windows 构建中仍不可用；cuDNN 仅 FP16 可用。首轮长度 1024 FP16 的 cuDNN 为 0.0683 ms，相对同精度 eager 加速 2.33×，峰值增量由 18 MiB 降至 0.501 MiB。三轮该形状最快后端有所变化，应结合完整重复记录解读。
+
+| 长度 | 精度 | eager ms | 首轮最快 | ms | 对同精度 eager 加速 | 相对 L2 误差 | 峰值增量 MiB |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| 128 | float16 | 0.1536 | sdpa_auto | 0.0413 | 3.72× | 0.000404 | 0.062 |
+| 128 | float32 | 0.1622 | sdpa_auto | 0.0273 | 5.94× | 4.22e-07 | 0.125 |
+| 256 | float16 | 0.1577 | sdpa_auto | 0.0256 | 6.16× | 0.000395 | 0.125 |
+| 256 | float32 | 0.1551 | sdpa_auto | 0.0311 | 4.99× | 4.76e-07 | 0.25 |
+| 512 | float16 | 0.3839 | sdpa_efficient | 0.0541 | 7.10× | 0.000413 | 0.25 |
+| 512 | float32 | 0.3403 | sdpa_auto | 0.0580 | 5.87× | 5e-07 | 0.5 |
+| 1024 | float16 | 0.1594 | sdpa_cudnn | 0.0683 | 2.33× | 0.000418 | 0.501 |
+| 1024 | float32 | 0.3441 | sdpa_efficient | 0.1808 | 1.90× | 5.73e-07 | 1.0 |
+
+上表为首轮数据。硬件、驱动和软件版本同时改变，不能把跨机器差异当作纯硬件升级收益。后端排名及短操作延迟有波动，详见 [完整复测报告、三轮范围与复现命令](results/2026-10-01-rtx5070-laptop/README.md)。原 `requirements.txt` 对应旧环境；RTX 50 系列使用 `requirements-cu128.txt`，选择器读取新结果时传 `--results results/2026-10-01-rtx5070-laptop/results.csv`。
+
+## 可复现运行（原 RTX 3050 环境）
 
 建议使用 Python 3.12。GPU 版依赖 CUDA 12.1 wheel；没有 NVIDIA GPU 时可安装 CPU wheel 并运行 CPU 配置。
 

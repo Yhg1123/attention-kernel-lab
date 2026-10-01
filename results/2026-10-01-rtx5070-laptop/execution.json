@@ -1,0 +1,93 @@
+[
+  {
+    "command": [
+      "python",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests",
+      "-v"
+    ],
+    "started_utc": "2026-10-01T08:32:58.003539+00:00",
+    "ended_utc": "2026-10-01T08:33:00.871811+00:00",
+    "returncode": 0,
+    "log": "results/2026-10-01-rtx5070-laptop/unit-tests.log"
+  },
+  {
+    "command": [
+      "python",
+      "benchmark.py",
+      "--output",
+      "results/2026-10-01-rtx5070-laptop",
+      "--device",
+      "cuda"
+    ],
+    "started_utc": "2026-10-01T08:33:00.871811+00:00",
+    "ended_utc": "2026-10-01T08:33:07.458013+00:00",
+    "returncode": 0,
+    "log": "results/2026-10-01-rtx5070-laptop/benchmark.log"
+  },
+  {
+    "command": [
+      "python",
+      "benchmark.py",
+      "--output",
+      "results/2026-10-01-rtx5070-laptop/repeat-02",
+      "--device",
+      "cuda"
+    ],
+    "started_utc": "2026-10-01T08:33:07.465050+00:00",
+    "ended_utc": "2026-10-01T08:33:13.673236+00:00",
+    "returncode": 0,
+    "log": "results/2026-10-01-rtx5070-laptop/repeat-02/benchmark.log"
+  },
+  {
+    "command": [
+      "python",
+      "benchmark.py",
+      "--output",
+      "results/2026-10-01-rtx5070-laptop/repeat-03",
+      "--device",
+      "cuda"
+    ],
+    "started_utc": "2026-10-01T08:33:13.681336+00:00",
+    "ended_utc": "2026-10-01T08:33:19.729732+00:00",
+    "returncode": 0,
+    "log": "results/2026-10-01-rtx5070-laptop/repeat-03/benchmark.log"
+  },
+  {
+    "command": [
+      "python",
+      "recommend.py",
+      "--results",
+      "results/2026-10-01-rtx5070-laptop/results.csv",
+      "--max-relative-error",
+      "0.001"
+    ],
+    "started_utc": "2026-10-01T08:33:19.738451+00:00",
+    "ended_utc": "2026-10-01T08:33:21.101095+00:00",
+    "returncode": 0,
+    "log": "results/2026-10-01-rtx5070-laptop/recommendations.csv"
+  },
+  {
+    "command": [
+      "python",
+      "benchmark.py",
+      "--warmup",
+      "1",
+      "--repeats",
+      "2",
+      "--output",
+      "smoke-results",
+      "--device",
+      "cpu",
+      "--lengths",
+      "16"
+    ],
+    "started_utc": "2026-10-01T08:33:21.102089+00:00",
+    "ended_utc": "2026-10-01T08:33:24.465987+00:00",
+    "returncode": 0,
+    "log": "results/2026-10-01-rtx5070-laptop/cpu-smoke.log"
+  }
+]

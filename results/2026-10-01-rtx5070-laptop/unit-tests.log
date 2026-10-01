@@ -1,0 +1,9 @@
+E:\AAAprogramworking\suanzi\.venv\Lib\site-packages\torch\_subclasses\functional_tensor.py:283: UserWarning: Failed to initialize NumPy: No module named 'numpy' (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\pytorch\torch\csrc\utils\tensor_numpy.cpp:84.)
+  cpu = _conversion_method_template(device=torch.device("cpu"))
+test_causal_eager_matches_sdpa_math (test_attention.AttentionTests.test_causal_eager_matches_sdpa_math) ... ok
+test_future_tokens_do_not_change_previous_output (test_attention.AttentionTests.test_future_tokens_do_not_change_previous_output) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.033s
+
+OK

@@ -1,0 +1,6 @@
+L=  16 float32 eager       ok           0.06125000072643161
+L=  16 float32 sdpa_math   ok           0.10584999108687043
+L=  16 float32 sdpa_auto   ok           0.01545000122860074
+Saved 3 rows to E:\AAAprogramworking\suanzi\attention-kernel-lab\smoke-results
+E:\AAAprogramworking\suanzi\.venv\Lib\site-packages\torch\_subclasses\functional_tensor.py:283: UserWarning: Failed to initialize NumPy: No module named 'numpy' (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\pytorch\torch\csrc\utils\tensor_numpy.cpp:84.)
+  cpu = _conversion_method_template(device=torch.device("cpu"))
