@@ -47,6 +47,8 @@ python qa_benchmark.py --output results/my-qa-run --trials 3 --local-files-only
 
 `requests.jsonl` 保存每一次测量；`summary.csv` 保存按配置/资料长度/生成模式汇总的中位数与最近秩 P95；`paired_comparisons.csv` 保存同轮同题的比值与输出一致性。`metadata.json` 保存模型版本、环境、代码/文档哈希、执行顺序、加载耗时。没有 `completed_utc` 的运行属于未完成结果，不能作为完整基准。
 
+每次新运行还会在 `source/` 保存实际采样的源码和文档快照，旧数据不会因为应用升级而失去校验能力。使用 `python summarize_qa.py --run results/2026-10-01-qa-http-worker --verify-only` 可以只校验历史数据，不重写报告。存在快照时必须完整通过哈希检查，不能靠当前代码掩盖缺失或损坏的归档；校验过程不执行历史源码。
+
 ## 指标解释与边界
 
 **客户端首段文字时间**从发送 HTTP 请求开始，到收到第一段非空文字为止；它比纯 GPU 首 token 更接近用户等待，但不含浏览器绘制。**总耗时**到收到最终 done 事件，包括 HTTP、检索、分词、数据搬运、生成、解码和流式发送。服务器同时记录首 token、检索和生成时间，以辅助定位瓶颈。HTTP 使用本机回环地址，不包含公网网络延迟。

@@ -14,7 +14,6 @@ import time
 import urllib.request
 
 from qa_app import Engine, KnowledgeBase, MODEL, REVISION, ROOT, VARIANTS, DEFAULT_VARIANTS, check_answer, make_server
-from qa_evidence import snapshot_sources
 
 
 def request_qa(url, payload, timeout=300):
@@ -145,9 +144,8 @@ def main():
                 scope="One sequential user; persistent inference worker across HTTP requests; no production load/concurrency claim. Short=top 2 BM25 docs; long=all 6 docs with top 2 first. Same full documents across variants, no truncation. Every generated step checks invalid logits, including synchronization overhead in both baselines and candidates.",
                 packages={d.metadata['Name']: d.version for d in importlib.metadata.distributions()},
                 source_sha256={p.name: hashlib.sha256(p.read_bytes()).hexdigest() for p in
-                               [ROOT / name for name in ("qa_app.py", "qa_benchmark.py", "qa_ui.html", "qa_fixtures.json", "qa_evidence.py", "bench_utils.py")]},
+                               [ROOT / name for name in ("qa_app.py", "qa_benchmark.py", "qa_ui.html", "qa_fixtures.json")]},
                 loads=[])
-    snapshot_sources(args.output, meta["source_sha256"], ROOT)
     write_json(args.output / "metadata.json", meta)
     rows = []
     for trial, variants in enumerate(orders):

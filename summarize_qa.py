@@ -9,17 +9,23 @@ import math
 from pathlib import Path
 import statistics
 
-from qa_app import KnowledgeBase
 from qa_benchmark import paired_comparisons, summarize
+from qa_evidence import source_directory
 
 
 def validate(run):
     meta = json.loads((run / "metadata.json").read_text(encoding="utf-8"))
     if not meta.get("completed_utc"):
         raise ValueError("Refusing incomplete run without completed_utc")
+    if meta.get("schema_version") != "qa-http-v1":
+        raise ValueError("Unsupported QA evidence schema")
+    source = source_directory(run, meta["source_sha256"], Path(__file__).parent)
+    fixture = (source / "qa_fixtures.json").read_bytes()
+    if hashlib.sha256(fixture).hexdigest() != meta["fixture_sha256"]:
+        raise ValueError("Fixture differs from measured fixture")
     rows = [json.loads(line) for line in (run / "requests.jsonl").read_text(encoding="utf-8").splitlines()]
     args = meta["arguments"]
-    cases = KnowledgeBase().questions
+    cases = json.loads(fixture)["questions"]
     if args.get("question_ids"):
         cases = [c for c in cases if c["id"] in args["question_ids"]]
     expected = {(v, t, c["id"], context, "natural") for v in args["variants"]
@@ -39,12 +45,6 @@ def validate(run):
             raise ValueError("Token count mismatch")
         if row["mode"] == "fixed" and row["output_tokens"] != args["fixed_tokens"]:
             raise ValueError("Fixed token control mismatch")
-    for name, digest in meta["source_sha256"].items():
-        path = Path(__file__).parent / name
-        if hashlib.sha256(path.read_bytes()).hexdigest() != digest:
-            raise ValueError(f"Current source differs from measured source: {name}")
-    if hashlib.sha256(KnowledgeBase().raw).hexdigest() != meta["fixture_sha256"]:
-        raise ValueError("Fixture differs from measured fixture")
     return meta, rows
 
 
@@ -52,8 +52,13 @@ def main():
     from bench_utils import write_csv, write_json
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--run", type=Path, required=True)
+    parser.add_argument("--verify-only", action="store_true", help="Check evidence without rewriting historical reports")
     args = parser.parse_args()
     meta, rows = validate(args.run)
+    if args.verify_only:
+        pairs = paired_comparisons(rows)
+        print(f"Verified {len(rows)} requests and {len(pairs)} prompt pairs; no files changed")
+        return
     summaries = summarize(rows)
     pairs = paired_comparisons(rows)
     write_csv(args.run / "summary.csv", summaries)
@@ -114,7 +119,8 @@ def main():
     (args.run / "README.md").write_text("\n".join(report) + "\n", encoding="utf-8")
     write_json(args.run / "verification.json", dict(requests=len(rows), paired_comparisons=len(pairs),
                complete_unique_requests=True, finite_timings=True, prompt_pairs_equal=True,
-               fixed_token_counts_equal=True, current_source_hashes_match=True,
+               fixed_token_counts_equal=True, measured_source_hashes_match=True,
+               source_location="archive" if (args.run / "source").exists() else "current_checkout",
                analyzer_sha256=hashlib.sha256(Path(__file__).read_bytes()).hexdigest()))
     print(f"Verified {len(rows)} requests; wrote report and answer inventory", flush=True)
 
