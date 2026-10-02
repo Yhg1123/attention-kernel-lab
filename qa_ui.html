@@ -4,14 +4,20 @@
 <style>
 body{max-width:850px;margin:50px auto;padding:0 24px;font:17px/1.7 system-ui;background:#f4f6f8;color:#182b36}h1{font-size:30px}label{display:block;margin-top:18px}textarea{box-sizing:border-box;width:100%;font:inherit;padding:15px;border:1px solid #c7d3da;border-radius:9px}button,select{font:inherit;padding:8px 16px;border:1px solid #b8c8cf;border-radius:7px}button{background:#11685c;color:white;cursor:pointer;margin:18px 0}button:disabled{opacity:.5}#answer{white-space:pre-wrap;background:white;padding:24px;border-radius:12px;min-height:110px}#status{color:#42626f;font-size:14px}.note{font-size:14px;color:#526570}
 </style>
+<style>
+#sources{margin:28px 0}#sources h2{font-size:22px}details{background:#fff;border:1px solid #d6e0e5;border-radius:9px;margin:10px 0;padding:12px 16px}summary{cursor:pointer;font-weight:600}details p{white-space:pre-wrap;font-size:15px;line-height:1.9}summary:focus-visible{outline:3px solid #11685c;outline-offset:4px}
+</style>
 <h1>青禾云 · 本地文档问答</h1><p>输入问题，查看模型根据本地资料生成的回答。</p>
 <p class="note">这是使用虚构产品文档的测试演示。答案可能有误，请核对原文。</p>
 <form id="form"><label for="question">你的问题</label><textarea id="question" rows="3">青禾云专业版每月多少钱，有多少存储空间？</textarea>
 <label for="context">提供给模型的资料</label><select id="context"><option value="short">检索到的两篇文档</option><option value="long">全部六篇文档</option></select><br>
 <button id="send">开始提问</button></form><div id="answer" role="status" aria-live="polite">回答会显示在这里。</div><p id="status"></p>
+<section id="sources" aria-label="本次参考原文" hidden><h2>本次参考原文</h2><p class="note">展开查看提供给模型的资料，核对回答是否有原文依据。</p><div id="source-list"></div></section>
 <script>
 const form=document.querySelector('#form'), answer=document.querySelector('#answer'), status=document.querySelector('#status'), send=document.querySelector('#send');
-form.onsubmit=async e=>{e.preventDefault();send.disabled=true;answer.textContent='';status.textContent='正在读取资料…';let first=null, start=performance.now(), buffer='';
+const sources=document.querySelector('#sources'), sourceList=document.querySelector('#source-list');
+function showSources(documents){sourceList.replaceChildren();for(const doc of documents){const details=document.createElement('details'), summary=document.createElement('summary'), text=document.createElement('p');summary.textContent=`${doc.title} [${doc.id}]`;text.textContent=doc.text;details.append(summary,text);sourceList.append(details);}sources.hidden=documents.length===0;}
+form.onsubmit=async e=>{e.preventDefault();send.disabled=true;answer.textContent='';showSources([]);status.textContent='正在读取资料…';let first=null, start=performance.now(), buffer='';
 try {const response=await fetch('/ask',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({question:document.querySelector('#question').value,context:document.querySelector('#context').value})});
 if(!response.ok)throw new Error('请求失败：'+response.status);
 const reader=response.body.pipeThrough(new TextDecoderStream()).getReader();let completed=false;
@@ -19,7 +25,7 @@ while(true){const {value,done}=await reader.read();if(done)break;buffer+=value;l
 while((newline=buffer.indexOf('\n'))>=0){const line=buffer.slice(0,newline);buffer=buffer.slice(newline+1);if(!line.trim())continue;const event=JSON.parse(line);
 if(event.event==='text'){if(first===null)first=performance.now()-start;answer.textContent+=event.text;}
 if(event.event==='error')throw new Error(event.message);
-if(event.event==='done'){completed=true;status.textContent=`首段文字：${first===null?'无':(first/1000).toFixed(2)+' 秒'} · 总计：${((performance.now()-start)/1000).toFixed(2)} 秒 · 参考资料：${event.retrieved_ids.join('、')}`;}}
+if(event.event==='done'){completed=true;showSources(event.retrieved_documents||[]);status.textContent=`首段文字：${first===null?'无':(first/1000).toFixed(2)+' 秒'} · 总计：${((performance.now()-start)/1000).toFixed(2)} 秒 · 参考资料：${event.retrieved_ids.join('、')}`;}}
 }if(!completed)throw new Error('连接结束，但未收到完整回答。');
 }catch(error){status.textContent=error.message;}finally{send.disabled=false;}};
 </script></html>

@@ -242,6 +242,7 @@ class Engine:
                 "event": "done", "variant": self.variant, "answer": answer,
                 "answer_policy": request.get("answer_policy", "baseline"),
                 "retrieved_ids": ids, "input_tokens": len(input_ids), "output_tokens": len(streamer.tokens),
+                "retrieved_documents": [next(dict(d) for d in self.kb.documents if d["id"] == key) for key in ids],
                 "input_sha256": hashlib.sha256(json.dumps(input_ids).encode()).hexdigest(),
                 "output_token_ids": streamer.tokens,
                 "stopped_on_eos": bool(streamer.tokens and streamer.tokens[-1] in eos),

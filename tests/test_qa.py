@@ -53,7 +53,8 @@ class FakeEngine:
             raise RuntimeError("deliberate test error")
         emit({"event": "text", "text": "回答"})
         emit({"event": "text", "text": "完成。"})
-        emit({"event": "done", "answer": "回答完成。"})
+        emit({"event": "done", "answer": "回答完成。", "retrieved_documents": [
+            {"id":"fixture", "title":"测试原文", "text":"<script>not executable</script> 中文资料"}]})
 
 
 class QAHTTPTests(unittest.TestCase):
@@ -73,6 +74,7 @@ class QAHTTPTests(unittest.TestCase):
             self.assertIn(b"/ask", response.read())
         result = request_qa(self.url, {"question": "test"})
         self.assertEqual(result["answer"], "回答完成。")
+        self.assertEqual(result["retrieved_documents"][0]["text"], "<script>not executable</script> 中文资料")
         self.assertLessEqual(result["client_first_text_ms"], result["client_total_ms"])
 
     def test_model_exception_is_not_counted_as_completed_request(self):

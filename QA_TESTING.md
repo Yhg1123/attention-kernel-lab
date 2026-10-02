@@ -8,6 +8,8 @@
 
 ## 启动演示
 
+网页回答下方可展开“本次参考原文”，查看实际提供给模型的完整文档。原文通过文本节点显示；它表示检索输入，不表示每条模型断言都已经核验正确。API 的完成事件也返回 `retrieved_documents`，按 `retrieved_ids` 顺序排列。历史计时数据对应各自 source 快照，不能把本次新增响应字段算入旧实验耗时。
+
 先安装适合设备的 PyTorch。RTX 5070 使用 `requirements-cu128.txt`；在同一 Python 环境安装 `pip install -r requirements-qa.txt`。
 
 ```powershell
