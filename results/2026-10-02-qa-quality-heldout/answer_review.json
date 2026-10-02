@@ -1,0 +1,870 @@
+{
+  "reviewer": "Codex assistant; post-hoc model-assisted review, not independent human evaluation",
+  "method": "Every saved full answer checked against all six documents. Pass requires correct supported answer, or explicit absence for unanswerable cases; grounded but nonresponsive text is separate from hallucination. Any unsupported factual addition fails even if core keywords match.",
+  "decisions": [
+    {
+      "question_id": "password_length",
+      "context": "long",
+      "answer_policy": "baseline",
+      "answer_sha256": "61a43d85545824b2c156cd1b6c3f3907b2108857351bd9a0115acb6556818f0f",
+      "label": "grounded_refusal",
+      "review_pass": true,
+      "reason": "明确说明文档没有该信息；措辞是否精确匹配另由 refusal contract 指标统计。"
+    },
+    {
+      "question_id": "password_length",
+      "context": "long",
+      "answer_policy": "strict",
+      "answer_sha256": "61a43d85545824b2c156cd1b6c3f3907b2108857351bd9a0115acb6556818f0f",
+      "label": "grounded_refusal",
+      "review_pass": true,
+      "reason": "明确说明文档没有该信息；措辞是否精确匹配另由 refusal contract 指标统计。"
+    },
+    {
+      "question_id": "uptime_sla",
+      "context": "long",
+      "answer_policy": "strict",
+      "answer_sha256": "61a43d85545824b2c156cd1b6c3f3907b2108857351bd9a0115acb6556818f0f",
+      "label": "grounded_refusal",
+      "review_pass": true,
+      "reason": "明确说明文档没有该信息；措辞是否精确匹配另由 refusal contract 指标统计。"
+    },
+    {
+      "question_id": "uptime_sla",
+      "context": "long",
+      "answer_policy": "baseline",
+      "answer_sha256": "61a43d85545824b2c156cd1b6c3f3907b2108857351bd9a0115acb6556818f0f",
+      "label": "grounded_refusal",
+      "review_pass": true,
+      "reason": "明确说明文档没有该信息；措辞是否精确匹配另由 refusal contract 指标统计。"
+    },
+    {
+      "question_id": "cross_price_backup",
+      "context": "short",
+      "answer_policy": "baseline",
+      "answer_sha256": "75cc3cb1a135d19f6473a7e9960596a810bf41de8c01b4c0575bf469b7c3cdef",
+      "label": "grounded_correct",
+      "review_pass": true,
+      "reason": "答案所需事实与文档一致。"
+    },
+    {
+      "question_id": "cross_price_backup",
+      "context": "short",
+      "answer_policy": "strict",
+      "answer_sha256": "a29ebdf2630f5878521ed7ccde190bf139295bcdf1dfeb9abef9dc2f4c55dc76",
+      "label": "grounded_correct",
+      "review_pass": true,
+      "reason": "答案所需事实与文档一致。"
+    },
+    {
+      "question_id": "enterprise_storage",
+      "context": "short",
+      "answer_policy": "strict",
+      "answer_sha256": "dd76b47409dbbb1f71e2a51215813651fd1f660cbbd6db2ca684a1bb877c4b73",
+      "label": "unsupported_claim",
+      "review_pass": false,
+      "reason": "将其他套餐的价格或容量错误归给企业定制版；文档没有该版本数值。"
+    },
+    {
+      "question_id": "enterprise_storage",
+      "context": "short",
+      "answer_policy": "baseline",
+      "answer_sha256": "dd76b47409dbbb1f71e2a51215813651fd1f660cbbd6db2ca684a1bb877c4b73",
+      "label": "unsupported_claim",
+      "review_pass": false,
+      "reason": "将其他套餐的价格或容量错误归给企业定制版；文档没有该版本数值。"
+    },
+    {
+      "question_id": "refund_allowed",
+      "context": "short",
+      "answer_policy": "baseline",
+      "answer_sha256": "42555e6ac4be70f0e7ab413f03bd2e339ed68d7a7b506203e2eb7c424d247e8e",
+      "label": "wrong_fact",
+      "review_pass": false,
+      "reason": "首次购买2天且从未建项目满足两个条件，答案却说不符合。原关键词检查误判。"
+    },
+    {
+      "question_id": "refund_allowed",
+      "context": "short",
+      "answer_policy": "strict",
+      "answer_sha256": "9a68fc9ce943e1a44722146a492e40274f6513484b12bf6a93aec900dd3e07a4",
+      "label": "wrong_fact",
+      "review_pass": false,
+      "reason": "首次购买2天且从未建项目满足两个条件，答案却说不符合。原关键词检查误判。"
+    },
+    {
+      "question_id": "deleted_project",
+      "context": "long",
+      "answer_policy": "strict",
+      "answer_sha256": "2739964396420c7cf72a3e3932450a810eae5167883ccda35bef8f638287cda6",
+      "label": "grounded_correct",
+      "review_pass": true,
+      "reason": "答案所需事实与文档一致。"
+    },
+    {
+      "question_id": "deleted_project",
+      "context": "long",
+      "answer_policy": "baseline",
+      "answer_sha256": "961e46a164ab8691e898a32cd583e5bdda310518a47635646c4755a817f270ec",
+      "label": "grounded_correct",
+      "review_pass": true,
+      "reason": "答案所需事实与文档一致。"
+    },
+    {
+      "question_id": "emptied_bin",
+      "context": "long",
+      "answer_policy": "baseline",
+      "answer_sha256": "c92e2ad7df269df3e5ebe5a1d3e13f846808bf6cb63fef32109f1625906993e5",
+      "label": "grounded_correct",
+      "review_pass": true,
+      "reason": "答案所需事实与文档一致。"
+    },
+    {
+      "question_id": "emptied_bin",
+      "context": "long",
+      "answer_policy": "strict",
+      "answer_sha256": "c92e2ad7df269df3e5ebe5a1d3e13f846808bf6cb63fef32109f1625906993e5",
+      "label": "grounded_correct",
+      "review_pass": true,
+      "reason": "答案所需事实与文档一致。"
+    },
+    {
+      "question_id": "plan_change",
+      "context": "long",
+      "answer_policy": "strict",
+      "answer_sha256": "e85f9faba012b997fd08d29dbbcf942035570d81d1a889f7f1f0403e2ab8da6e",
+      "label": "grounded_correct",
+      "review_pass": true,
+      "reason": "答案所需事实与文档一致。"
+    },
+    {
+      "question_id": "plan_change",
+      "context": "long",
+      "answer_policy": "baseline",
+      "answer_sha256": "5b1ed765088c35d78b340ea07ad90486e57ce2388709e4f7e15cf1f93569d22d",
+      "label": "grounded_correct",
+      "review_pass": true,
+      "reason": "答案所需事实与文档一致。"
+    },
+    {
+      "question_id": "storage_count",
+      "context": "long",
+      "answer_policy": "baseline",
+      "answer_sha256": "16c40d2b2ba813b7575ba97aa3ade728bf6dbd107a7675f84b45ee6a014c9939",
+      "label": "wrong_fact",
+      "review_pass": false,
+      "reason": "文档明确回收站文件计入容量，答案却说不计入。原关键词检查误判。"
+    },
+    {
+      "question_id": "storage_count",
+      "context": "long",
+      "answer_policy": "strict",
+      "answer_sha256": "16c40d2b2ba813b7575ba97aa3ade728bf6dbd107a7675f84b45ee6a014c9939",
+      "label": "wrong_fact",
+      "review_pass": false,
+      "reason": "文档明确回收站文件计入容量，答案却说不计入。原关键词检查误判。"
+    },
+    {
+      "question_id": "export_zip",
+      "context": "long",
+      "answer_policy": "strict",
+      "answer_sha256": "61a43d85545824b2c156cd1b6c3f3907b2108857351bd9a0115acb6556818f0f",
+      "label": "grounded_refusal",
+      "review_pass": true,
+      "reason": "明确说明文档没有该信息；措辞是否精确匹配另由 refusal contract 指标统计。"
+    },
+    {
+      "question_id": "export_zip",
+      "context": "long",
+      "answer_policy": "baseline",
+      "answer_sha256": "57daec534a75281140938041f2065cfd7a387df34736e121b4d93f43c281cbe8",
+      "label": "grounded_refusal",
+      "review_pass": true,
+      "reason": "明确说明文档没有该信息；措辞是否精确匹配另由 refusal contract 指标统计。"
+    },
+    {
+      "question_id": "export_formats",
+      "context": "long",
+      "answer_policy": "baseline",
+      "answer_sha256": "5cf2b5e16d9a84b9872a67ad5872319fffe11acf156c335dacd7572f35ed7af8",
+      "label": "grounded_correct",
+      "review_pass": true,
+      "reason": "答案所需事实与文档一致。"
+    },
+    {
+      "question_id": "export_formats",
+      "context": "long",
+      "answer_policy": "strict",
+      "answer_sha256": "5cf2b5e16d9a84b9872a67ad5872319fffe11acf156c335dacd7572f35ed7af8",
+      "label": "grounded_correct",
+      "review_pass": true,
+      "reason": "答案所需事实与文档一致。"
+    },
+    {
+      "question_id": "api_limit",
+      "context": "short",
+      "answer_policy": "strict",
+      "answer_sha256": "61a43d85545824b2c156cd1b6c3f3907b2108857351bd9a0115acb6556818f0f",
+      "label": "grounded_refusal",
+      "review_pass": true,
+      "reason": "明确说明文档没有该信息；措辞是否精确匹配另由 refusal contract 指标统计。"
+    },
+    {
+      "question_id": "api_limit",
+      "context": "short",
+      "answer_policy": "baseline",
+      "answer_sha256": "61a43d85545824b2c156cd1b6c3f3907b2108857351bd9a0115acb6556818f0f",
+      "label": "grounded_refusal",
+      "review_pass": true,
+      "reason": "明确说明文档没有该信息；措辞是否精确匹配另由 refusal contract 指标统计。"
+    },
+    {
+      "question_id": "refund_arrival",
+      "context": "short",
+      "answer_policy": "baseline",
+      "answer_sha256": "6035316d40d6f9534f8ae8a6ad40bd6e0164a6628d31dcb3ee197410696bbdb8",
+      "label": "grounded_nonanswer",
+      "review_pass": false,
+      "reason": "复述了相关文档，但未给出所问的具体时长，也未明确说该信息缺失；没有捏造数值。"
+    },
+    {
+      "question_id": "refund_arrival",
+      "context": "short",
+      "answer_policy": "strict",
+      "answer_sha256": "6035316d40d6f9534f8ae8a6ad40bd6e0164a6628d31dcb3ee197410696bbdb8",
+      "label": "grounded_nonanswer",
+      "review_pass": false,
+      "reason": "复述了相关文档，但未给出所问的具体时长，也未明确说该信息缺失；没有捏造数值。"
+    },
+    {
+      "question_id": "cross_support_export",
+      "context": "long",
+      "answer_policy": "strict",
+      "answer_sha256": "34a35c615fc16ef3f658051a2a8d58cb510868d8fb22b79d3fd841ba0f66c8e7",
+      "label": "grounded_correct",
+      "review_pass": true,
+      "reason": "答案所需事实与文档一致。"
+    },
+    {
+      "question_id": "cross_support_export",
+      "context": "long",
+      "answer_policy": "baseline",
+      "answer_sha256": "ff26ca91ac7d2f9c5cd2ace2827339d22e3e8f449498259ea189aa3f52a7d0d4",
+      "label": "grounded_correct",
+      "review_pass": true,
+      "reason": "答案所需事实与文档一致。"
+    },
+    {
+      "question_id": "invite_hours",
+      "context": "short",
+      "answer_policy": "baseline",
+      "answer_sha256": "11cf8c1d4bb0a1fa284ca86d3d1844477153a353a81cab2d7c15af1f16065c31",
+      "label": "grounded_nonanswer",
+      "review_pass": false,
+      "reason": "复述了相关文档，但未给出所问的具体时长，也未明确说该信息缺失；没有捏造数值。"
+    },
+    {
+      "question_id": "invite_hours",
+      "context": "short",
+      "answer_policy": "strict",
+      "answer_sha256": "11cf8c1d4bb0a1fa284ca86d3d1844477153a353a81cab2d7c15af1f16065c31",
+      "label": "grounded_nonanswer",
+      "review_pass": false,
+      "reason": "复述了相关文档，但未给出所问的具体时长，也未明确说该信息缺失；没有捏造数值。"
+    },
+    {
+      "question_id": "emptied_bin",
+      "context": "short",
+      "answer_policy": "strict",
+      "answer_sha256": "1d401df65fff0fa74156080ef8d2441de11704634f71de3b696a57c302d01d4c",
+      "label": "grounded_correct",
+      "review_pass": true,
+      "reason": "答案所需事实与文档一致。"
+    },
+    {
+      "question_id": "emptied_bin",
+      "context": "short",
+      "answer_policy": "baseline",
+      "answer_sha256": "148cfd1b7f4f17723051697ba544be9a6cccaf8003b49d794730ae8de819f0f2",
+      "label": "grounded_correct",
+      "review_pass": true,
+      "reason": "答案所需事实与文档一致。"
+    },
+    {
+      "question_id": "api_limit",
+      "context": "long",
+      "answer_policy": "baseline",
+      "answer_sha256": "bec4f93b7aa2d196d9e6b9320ba61fee3bc9ed1070d1a7b4c45b0b713c786f51",
+      "label": "grounded_refusal",
+      "review_pass": true,
+      "reason": "明确说明文档没有该信息；措辞是否精确匹配另由 refusal contract 指标统计。"
+    },
+    {
+      "question_id": "api_limit",
+      "context": "long",
+      "answer_policy": "strict",
+      "answer_sha256": "61a43d85545824b2c156cd1b6c3f3907b2108857351bd9a0115acb6556818f0f",
+      "label": "grounded_refusal",
+      "review_pass": true,
+      "reason": "明确说明文档没有该信息；措辞是否精确匹配另由 refusal contract 指标统计。"
+    },
+    {
+      "question_id": "base_capacity",
+      "context": "long",
+      "answer_policy": "strict",
+      "answer_sha256": "1f8cf4c0dbfa0ea6381eba3bdf4200f4a61c4a18dd9e9d355df5d7d8dd9451ea",
+      "label": "grounded_correct",
+      "review_pass": true,
+      "reason": "答案所需事实与文档一致。"
+    },
+    {
+      "question_id": "base_capacity",
+      "context": "long",
+      "answer_policy": "baseline",
+      "answer_sha256": "fbd91ea68124d5de6d8b5fa51284d5f889815674d8c658d08ae91c2bd586de00",
+      "label": "grounded_correct",
+      "review_pass": true,
+      "reason": "答案所需事实与文档一致。"
+    },
+    {
+      "question_id": "enterprise_storage",
+      "context": "long",
+      "answer_policy": "baseline",
+      "answer_sha256": "dd76b47409dbbb1f71e2a51215813651fd1f660cbbd6db2ca684a1bb877c4b73",
+      "label": "unsupported_claim",
+      "review_pass": false,
+      "reason": "将其他套餐的价格或容量错误归给企业定制版；文档没有该版本数值。"
+    },
+    {
+      "question_id": "enterprise_storage",
+      "context": "long",
+      "answer_policy": "strict",
+      "answer_sha256": "dd76b47409dbbb1f71e2a51215813651fd1f660cbbd6db2ca684a1bb877c4b73",
+      "label": "unsupported_claim",
+      "review_pass": false,
+      "reason": "将其他套餐的价格或容量错误归给企业定制版；文档没有该版本数值。"
+    },
+    {
+      "question_id": "invite_hours",
+      "context": "long",
+      "answer_policy": "strict",
+      "answer_sha256": "11cf8c1d4bb0a1fa284ca86d3d1844477153a353a81cab2d7c15af1f16065c31",
+      "label": "grounded_nonanswer",
+      "review_pass": false,
+      "reason": "复述了相关文档，但未给出所问的具体时长，也未明确说该信息缺失；没有捏造数值。"
+    },
+    {
+      "question_id": "invite_hours",
+      "context": "long",
+      "answer_policy": "baseline",
+      "answer_sha256": "11cf8c1d4bb0a1fa284ca86d3d1844477153a353a81cab2d7c15af1f16065c31",
+      "label": "grounded_nonanswer",
+      "review_pass": false,
+      "reason": "复述了相关文档，但未给出所问的具体时长，也未明确说该信息缺失；没有捏造数值。"
+    },
+    {
+      "question_id": "backup_time",
+      "context": "short",
+      "answer_policy": "baseline",
+      "answer_sha256": "15b31988f9714c201a0d610cdaab041d1375bfb026dbb5b28ec0a39ac76a192a",
+      "label": "grounded_correct",
+      "review_pass": true,
+      "reason": "答案所需事实与文档一致。"
+    },
+    {
+      "question_id": "backup_time",
+      "context": "short",
+      "answer_policy": "strict",
+      "answer_sha256": "15b31988f9714c201a0d610cdaab041d1375bfb026dbb5b28ec0a39ac76a192a",
+      "label": "grounded_correct",
+      "review_pass": true,
+      "reason": "答案所需事实与文档一致。"
+    },
+    {
+      "question_id": "backup_region",
+      "context": "short",
+      "answer_policy": "strict",
+      "answer_sha256": "61a43d85545824b2c156cd1b6c3f3907b2108857351bd9a0115acb6556818f0f",
+      "label": "grounded_refusal",
+      "review_pass": true,
+      "reason": "明确说明文档没有该信息；措辞是否精确匹配另由 refusal contract 指标统计。"
+    },
+    {
+      "question_id": "backup_region",
+      "context": "short",
+      "answer_policy": "baseline",
+      "answer_sha256": "61a43d85545824b2c156cd1b6c3f3907b2108857351bd9a0115acb6556818f0f",
+      "label": "grounded_refusal",
+      "review_pass": true,
+      "reason": "明确说明文档没有该信息；措辞是否精确匹配另由 refusal contract 指标统计。"
+    },
+    {
+      "question_id": "cross_support_export",
+      "context": "short",
+      "answer_policy": "baseline",
+      "answer_sha256": "34a35c615fc16ef3f658051a2a8d58cb510868d8fb22b79d3fd841ba0f66c8e7",
+      "label": "grounded_correct",
+      "review_pass": true,
+      "reason": "答案所需事实与文档一致。"
+    },
+    {
+      "question_id": "cross_support_export",
+      "context": "short",
+      "answer_policy": "strict",
+      "answer_sha256": "34a35c615fc16ef3f658051a2a8d58cb510868d8fb22b79d3fd841ba0f66c8e7",
+      "label": "grounded_correct",
+      "review_pass": true,
+      "reason": "答案所需事实与文档一致。"
+    },
+    {
+      "question_id": "export_formats",
+      "context": "short",
+      "answer_policy": "strict",
+      "answer_sha256": "5cf2b5e16d9a84b9872a67ad5872319fffe11acf156c335dacd7572f35ed7af8",
+      "label": "grounded_correct",
+      "review_pass": true,
+      "reason": "答案所需事实与文档一致。"
+    },
+    {
+      "question_id": "export_formats",
+      "context": "short",
+      "answer_policy": "baseline",
+      "answer_sha256": "5cf2b5e16d9a84b9872a67ad5872319fffe11acf156c335dacd7572f35ed7af8",
+      "label": "grounded_correct",
+      "review_pass": true,
+      "reason": "答案所需事实与文档一致。"
+    },
+    {
+      "question_id": "export_zip",
+      "context": "short",
+      "answer_policy": "baseline",
+      "answer_sha256": "57daec534a75281140938041f2065cfd7a387df34736e121b4d93f43c281cbe8",
+      "label": "grounded_refusal",
+      "review_pass": true,
+      "reason": "明确说明文档没有该信息；措辞是否精确匹配另由 refusal contract 指标统计。"
+    },
+    {
+      "question_id": "export_zip",
+      "context": "short",
+      "answer_policy": "strict",
+      "answer_sha256": "61a43d85545824b2c156cd1b6c3f3907b2108857351bd9a0115acb6556818f0f",
+      "label": "grounded_refusal",
+      "review_pass": true,
+      "reason": "明确说明文档没有该信息；措辞是否精确匹配另由 refusal contract 指标统计。"
+    },
+    {
+      "question_id": "pro_members",
+      "context": "long",
+      "answer_policy": "strict",
+      "answer_sha256": "46eb8257aaf7ba5a601132b3be6ee718bd95a245f7242fbf60339cc2955cbace",
+      "label": "grounded_correct",
+      "review_pass": true,
+      "reason": "答案所需事实与文档一致。"
+    },
+    {
+      "question_id": "pro_members",
+      "context": "long",
+      "answer_policy": "baseline",
+      "answer_sha256": "46eb8257aaf7ba5a601132b3be6ee718bd95a245f7242fbf60339cc2955cbace",
+      "label": "grounded_correct",
+      "review_pass": true,
+      "reason": "答案所需事实与文档一致。"
+    },
+    {
+      "question_id": "password_length",
+      "context": "short",
+      "answer_policy": "baseline",
+      "answer_sha256": "61a43d85545824b2c156cd1b6c3f3907b2108857351bd9a0115acb6556818f0f",
+      "label": "grounded_refusal",
+      "review_pass": true,
+      "reason": "明确说明文档没有该信息；措辞是否精确匹配另由 refusal contract 指标统计。"
+    },
+    {
+      "question_id": "password_length",
+      "context": "short",
+      "answer_policy": "strict",
+      "answer_sha256": "61a43d85545824b2c156cd1b6c3f3907b2108857351bd9a0115acb6556818f0f",
+      "label": "grounded_refusal",
+      "review_pass": true,
+      "reason": "明确说明文档没有该信息；措辞是否精确匹配另由 refusal contract 指标统计。"
+    },
+    {
+      "question_id": "invoice_tax",
+      "context": "long",
+      "answer_policy": "strict",
+      "answer_sha256": "b60d58179809364ea25353b791b6ee1d304f263b82b85f9117a34596e0508234",
+      "label": "grounded_refusal",
+      "review_pass": true,
+      "reason": "明确说明文档没有该信息；措辞是否精确匹配另由 refusal contract 指标统计。"
+    },
+    {
+      "question_id": "invoice_tax",
+      "context": "long",
+      "answer_policy": "baseline",
+      "answer_sha256": "59793db8324a347895720964116aaf48e157f5895fd89ef435653954e97790f5",
+      "label": "grounded_refusal",
+      "review_pass": true,
+      "reason": "明确说明文档没有该信息；措辞是否精确匹配另由 refusal contract 指标统计。"
+    },
+    {
+      "question_id": "pro_members",
+      "context": "short",
+      "answer_policy": "baseline",
+      "answer_sha256": "46eb8257aaf7ba5a601132b3be6ee718bd95a245f7242fbf60339cc2955cbace",
+      "label": "grounded_correct",
+      "review_pass": true,
+      "reason": "答案所需事实与文档一致。"
+    },
+    {
+      "question_id": "pro_members",
+      "context": "short",
+      "answer_policy": "strict",
+      "answer_sha256": "46eb8257aaf7ba5a601132b3be6ee718bd95a245f7242fbf60339cc2955cbace",
+      "label": "grounded_correct",
+      "review_pass": true,
+      "reason": "答案所需事实与文档一致。"
+    },
+    {
+      "question_id": "expired_export",
+      "context": "short",
+      "answer_policy": "strict",
+      "answer_sha256": "cee33fdc19976eb343da9c7e6b2512dce765587369be6fab8cee7ae1c9eabb2c",
+      "label": "grounded_correct",
+      "review_pass": true,
+      "reason": "答案所需事实与文档一致。"
+    },
+    {
+      "question_id": "expired_export",
+      "context": "short",
+      "answer_policy": "baseline",
+      "answer_sha256": "fa8f3553ca7de30341bab1a46481f82e128f1273f7e93aea5c8984a00517d23c",
+      "label": "grounded_correct",
+      "review_pass": true,
+      "reason": "答案所需事实与文档一致。"
+    },
+    {
+      "question_id": "member_files",
+      "context": "short",
+      "answer_policy": "baseline",
+      "answer_sha256": "f4407521d467e686d23ee54317a9d2aaae987cf774531cfcdc844cc7031391c2",
+      "label": "grounded_correct",
+      "review_pass": true,
+      "reason": "答案所需事实与文档一致。"
+    },
+    {
+      "question_id": "member_files",
+      "context": "short",
+      "answer_policy": "strict",
+      "answer_sha256": "f65cb75e586d104341e8a2300d889577c6d2f64656da4a3622e715b76a0aec96",
+      "label": "grounded_correct",
+      "review_pass": true,
+      "reason": "答案所需事实与文档一致。"
+    },
+    {
+      "question_id": "plan_change",
+      "context": "short",
+      "answer_policy": "strict",
+      "answer_sha256": "43c4cd8c87013085eee3d506b4fbc0893b94a6f055c669fd6d1c9cc8a9b962c5",
+      "label": "grounded_correct",
+      "review_pass": true,
+      "reason": "答案所需事实与文档一致。"
+    },
+    {
+      "question_id": "plan_change",
+      "context": "short",
+      "answer_policy": "baseline",
+      "answer_sha256": "5b1ed765088c35d78b340ea07ad90486e57ce2388709e4f7e15cf1f93569d22d",
+      "label": "grounded_correct",
+      "review_pass": true,
+      "reason": "答案所需事实与文档一致。"
+    },
+    {
+      "question_id": "member_files",
+      "context": "long",
+      "answer_policy": "baseline",
+      "answer_sha256": "34cfb128abea395eaee09c7fb3ac36fe2a87fb84f5494852b2ea23773a461942",
+      "label": "grounded_correct",
+      "review_pass": true,
+      "reason": "答案所需事实与文档一致。"
+    },
+    {
+      "question_id": "member_files",
+      "context": "long",
+      "answer_policy": "strict",
+      "answer_sha256": "03e82af248cb11d83f21d2ece518eb0cab3394e2bcc9c4072180507e596a1f9f",
+      "label": "unsupported_claim",
+      "review_pass": false,
+      "reason": "移除成员不删除文件，但额外把这些文件关联到回收站30天清理；文档没有这个因果关系。"
+    },
+    {
+      "question_id": "invoice_tax",
+      "context": "short",
+      "answer_policy": "strict",
+      "answer_sha256": "5bf1ea84761c04400cb7859b160c74a6a2c1f4c06dbc702d14c2404e8024a8e3",
+      "label": "grounded_refusal",
+      "review_pass": true,
+      "reason": "明确说明文档没有该信息；措辞是否精确匹配另由 refusal contract 指标统计。"
+    },
+    {
+      "question_id": "invoice_tax",
+      "context": "short",
+      "answer_policy": "baseline",
+      "answer_sha256": "5bf1ea84761c04400cb7859b160c74a6a2c1f4c06dbc702d14c2404e8024a8e3",
+      "label": "grounded_refusal",
+      "review_pass": true,
+      "reason": "明确说明文档没有该信息；措辞是否精确匹配另由 refusal contract 指标统计。"
+    },
+    {
+      "question_id": "base_capacity",
+      "context": "short",
+      "answer_policy": "baseline",
+      "answer_sha256": "1f8cf4c0dbfa0ea6381eba3bdf4200f4a61c4a18dd9e9d355df5d7d8dd9451ea",
+      "label": "grounded_correct",
+      "review_pass": true,
+      "reason": "答案所需事实与文档一致。"
+    },
+    {
+      "question_id": "base_capacity",
+      "context": "short",
+      "answer_policy": "strict",
+      "answer_sha256": "1f8cf4c0dbfa0ea6381eba3bdf4200f4a61c4a18dd9e9d355df5d7d8dd9451ea",
+      "label": "grounded_correct",
+      "review_pass": true,
+      "reason": "答案所需事实与文档一致。"
+    },
+    {
+      "question_id": "refund_arrival",
+      "context": "long",
+      "answer_policy": "strict",
+      "answer_sha256": "6035316d40d6f9534f8ae8a6ad40bd6e0164a6628d31dcb3ee197410696bbdb8",
+      "label": "grounded_nonanswer",
+      "review_pass": false,
+      "reason": "复述了相关文档，但未给出所问的具体时长，也未明确说该信息缺失；没有捏造数值。"
+    },
+    {
+      "question_id": "refund_arrival",
+      "context": "long",
+      "answer_policy": "baseline",
+      "answer_sha256": "6035316d40d6f9534f8ae8a6ad40bd6e0164a6628d31dcb3ee197410696bbdb8",
+      "label": "grounded_nonanswer",
+      "review_pass": false,
+      "reason": "复述了相关文档，但未给出所问的具体时长，也未明确说该信息缺失；没有捏造数值。"
+    },
+    {
+      "question_id": "support_phone",
+      "context": "short",
+      "answer_policy": "baseline",
+      "answer_sha256": "61a43d85545824b2c156cd1b6c3f3907b2108857351bd9a0115acb6556818f0f",
+      "label": "grounded_refusal",
+      "review_pass": true,
+      "reason": "明确说明文档没有该信息；措辞是否精确匹配另由 refusal contract 指标统计。"
+    },
+    {
+      "question_id": "support_phone",
+      "context": "short",
+      "answer_policy": "strict",
+      "answer_sha256": "61a43d85545824b2c156cd1b6c3f3907b2108857351bd9a0115acb6556818f0f",
+      "label": "grounded_refusal",
+      "review_pass": true,
+      "reason": "明确说明文档没有该信息；措辞是否精确匹配另由 refusal contract 指标统计。"
+    },
+    {
+      "question_id": "expired_export",
+      "context": "long",
+      "answer_policy": "strict",
+      "answer_sha256": "447a2652d07dd71974b74aedf93db9e22d4a74067fa34ce1202089346469d626",
+      "label": "unsupported_claim",
+      "review_pass": false,
+      "reason": "重新生成链接是正确方向，但编造了导出选项卡和刷新按钮操作。"
+    },
+    {
+      "question_id": "expired_export",
+      "context": "long",
+      "answer_policy": "baseline",
+      "answer_sha256": "f65521498476dda615efb4786e0ee33a600d5c4d3467db67b2f432b7e4ca101d",
+      "label": "grounded_correct",
+      "review_pass": true,
+      "reason": "答案所需事实与文档一致。"
+    },
+    {
+      "question_id": "storage_count",
+      "context": "short",
+      "answer_policy": "baseline",
+      "answer_sha256": "16c40d2b2ba813b7575ba97aa3ade728bf6dbd107a7675f84b45ee6a014c9939",
+      "label": "wrong_fact",
+      "review_pass": false,
+      "reason": "文档明确回收站文件计入容量，答案却说不计入。原关键词检查误判。"
+    },
+    {
+      "question_id": "storage_count",
+      "context": "short",
+      "answer_policy": "strict",
+      "answer_sha256": "16c40d2b2ba813b7575ba97aa3ade728bf6dbd107a7675f84b45ee6a014c9939",
+      "label": "wrong_fact",
+      "review_pass": false,
+      "reason": "文档明确回收站文件计入容量，答案却说不计入。原关键词检查误判。"
+    },
+    {
+      "question_id": "support_phone",
+      "context": "long",
+      "answer_policy": "strict",
+      "answer_sha256": "61a43d85545824b2c156cd1b6c3f3907b2108857351bd9a0115acb6556818f0f",
+      "label": "grounded_refusal",
+      "review_pass": true,
+      "reason": "明确说明文档没有该信息；措辞是否精确匹配另由 refusal contract 指标统计。"
+    },
+    {
+      "question_id": "support_phone",
+      "context": "long",
+      "answer_policy": "baseline",
+      "answer_sha256": "61a43d85545824b2c156cd1b6c3f3907b2108857351bd9a0115acb6556818f0f",
+      "label": "grounded_refusal",
+      "review_pass": true,
+      "reason": "明确说明文档没有该信息；措辞是否精确匹配另由 refusal contract 指标统计。"
+    },
+    {
+      "question_id": "backup_time",
+      "context": "long",
+      "answer_policy": "baseline",
+      "answer_sha256": "15b31988f9714c201a0d610cdaab041d1375bfb026dbb5b28ec0a39ac76a192a",
+      "label": "grounded_correct",
+      "review_pass": true,
+      "reason": "答案所需事实与文档一致。"
+    },
+    {
+      "question_id": "backup_time",
+      "context": "long",
+      "answer_policy": "strict",
+      "answer_sha256": "94ff06503f73966aac3a6556aa4a9baad1084e6f422e994a81dbf684af0e0fe1",
+      "label": "grounded_correct",
+      "review_pass": true,
+      "reason": "答案所需事实与文档一致。"
+    },
+    {
+      "question_id": "export_split",
+      "context": "short",
+      "answer_policy": "strict",
+      "answer_sha256": "7df0e2312c5d2339f8bb94107a4d1ab0e09c596532a9037437402018395bb183",
+      "label": "unsupported_claim",
+      "review_pass": false,
+      "reason": "分批方法正确，但“确保所有数据都能成功导出”是文档没有给出的保证。"
+    },
+    {
+      "question_id": "export_split",
+      "context": "short",
+      "answer_policy": "baseline",
+      "answer_sha256": "308016dc36b944e4763efa50b0d3795e16f657aa76a41d39a2089511b689f41b",
+      "label": "grounded_correct",
+      "review_pass": true,
+      "reason": "答案所需事实与文档一致。"
+    },
+    {
+      "question_id": "cross_price_backup",
+      "context": "long",
+      "answer_policy": "baseline",
+      "answer_sha256": "af680e4318446c5bb552f27e68a806e80f52d82b55ea9ef24ca29fa173a764f0",
+      "label": "grounded_correct",
+      "review_pass": true,
+      "reason": "答案所需事实与文档一致。"
+    },
+    {
+      "question_id": "cross_price_backup",
+      "context": "long",
+      "answer_policy": "strict",
+      "answer_sha256": "a29ebdf2630f5878521ed7ccde190bf139295bcdf1dfeb9abef9dc2f4c55dc76",
+      "label": "grounded_correct",
+      "review_pass": true,
+      "reason": "答案所需事实与文档一致。"
+    },
+    {
+      "question_id": "export_split",
+      "context": "long",
+      "answer_policy": "strict",
+      "answer_sha256": "189ac1ff449cd2827a34fe78b460f7605f9e7ccecf6b3e206063b8407d2e9105",
+      "label": "grounded_correct",
+      "review_pass": true,
+      "reason": "答案所需事实与文档一致。"
+    },
+    {
+      "question_id": "export_split",
+      "context": "long",
+      "answer_policy": "baseline",
+      "answer_sha256": "308016dc36b944e4763efa50b0d3795e16f657aa76a41d39a2089511b689f41b",
+      "label": "grounded_correct",
+      "review_pass": true,
+      "reason": "答案所需事实与文档一致。"
+    },
+    {
+      "question_id": "uptime_sla",
+      "context": "short",
+      "answer_policy": "baseline",
+      "answer_sha256": "61a43d85545824b2c156cd1b6c3f3907b2108857351bd9a0115acb6556818f0f",
+      "label": "grounded_refusal",
+      "review_pass": true,
+      "reason": "明确说明文档没有该信息；措辞是否精确匹配另由 refusal contract 指标统计。"
+    },
+    {
+      "question_id": "uptime_sla",
+      "context": "short",
+      "answer_policy": "strict",
+      "answer_sha256": "61a43d85545824b2c156cd1b6c3f3907b2108857351bd9a0115acb6556818f0f",
+      "label": "grounded_refusal",
+      "review_pass": true,
+      "reason": "明确说明文档没有该信息；措辞是否精确匹配另由 refusal contract 指标统计。"
+    },
+    {
+      "question_id": "refund_allowed",
+      "context": "long",
+      "answer_policy": "strict",
+      "answer_sha256": "ce93124d0c5e93d2a313b07905882c02b6aa14928669204be1b7fceaf21357a9",
+      "label": "grounded_correct",
+      "review_pass": true,
+      "reason": "答案所需事实与文档一致。"
+    },
+    {
+      "question_id": "refund_allowed",
+      "context": "long",
+      "answer_policy": "baseline",
+      "answer_sha256": "96b6b6b1e7b907eb07bf7c70605e285a517702c2bbec02963304ddfe8b103e59",
+      "label": "grounded_correct",
+      "review_pass": true,
+      "reason": "答案所需事实与文档一致。"
+    },
+    {
+      "question_id": "backup_region",
+      "context": "long",
+      "answer_policy": "baseline",
+      "answer_sha256": "a304395952fc31c1b3ff93b08f84130d77db324c4b0d31ccee7d43b7ba89a8e1",
+      "label": "grounded_refusal",
+      "review_pass": true,
+      "reason": "明确说明文档没有该信息；措辞是否精确匹配另由 refusal contract 指标统计。"
+    },
+    {
+      "question_id": "backup_region",
+      "context": "long",
+      "answer_policy": "strict",
+      "answer_sha256": "920fadce1478bf21375bd967dbb36b0026c8867ae00aefbac5d96df511e3f88c",
+      "label": "grounded_refusal",
+      "review_pass": true,
+      "reason": "明确说明文档没有该信息；措辞是否精确匹配另由 refusal contract 指标统计。"
+    },
+    {
+      "question_id": "deleted_project",
+      "context": "short",
+      "answer_policy": "strict",
+      "answer_sha256": "c50d2deb1fbd55b7979d57274a0ea18e9a91e552d655dd90e9bcff1b278ef52e",
+      "label": "grounded_correct",
+      "review_pass": true,
+      "reason": "答案所需事实与文档一致。"
+    },
+    {
+      "question_id": "deleted_project",
+      "context": "short",
+      "answer_policy": "baseline",
+      "answer_sha256": "e88cc2c892f8c8f3b3baa29cc3334f6137cf9b108ed8b17c5f865d871abe8683",
+      "label": "grounded_correct",
+      "review_pass": true,
+      "reason": "答案所需事实与文档一致。"
+    }
+  ]
+}

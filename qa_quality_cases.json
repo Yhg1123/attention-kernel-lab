@@ -1,0 +1,556 @@
+{
+  "description": "原创虚构青禾云文档的扩展工程回归；同一六篇文档，32个问题，不是独立领域通用评测。",
+  "protocol": "Before inference: freeze 8 development and 24 heldout questions, baseline and one generic strict prompt. Evaluate dev, freeze prompt before heldout; do not tune against heldout. Both policies use identical question/docs/retrieval/model/dtype, differ only in system prompt. Greedy, max_new_tokens=96, short/long, one request per cell. Exact normalized refusal required for unknowns; keyword checks for known answers plus saved full text for model-assisted review. No human-independent accuracy claim.",
+  "questions": [
+    {
+      "id": "price",
+      "question": "青禾云专业版每月多少钱，有多少存储空间？",
+      "documents": [
+        "plan"
+      ],
+      "required": [
+        [
+          "99"
+        ],
+        [
+          "200gb",
+          "200 gb"
+        ]
+      ],
+      "forbidden": [],
+      "split": "dev",
+      "category": "regression"
+    },
+    {
+      "id": "refund",
+      "question": "青禾云首次购买3天后，但已经创建项目，还能按首次购买规则全额退款吗？",
+      "documents": [
+        "refund"
+      ],
+      "required": [
+        [
+          "不能",
+          "不可以",
+          "不符合",
+          "不适用",
+          "无法"
+        ]
+      ],
+      "forbidden": [],
+      "split": "dev",
+      "category": "regression"
+    },
+    {
+      "id": "retention",
+      "question": "青禾云自动备份保留多少天？回收站文件保留多少天？",
+      "documents": [
+        "backup"
+      ],
+      "required": [
+        [
+          "14"
+        ],
+        [
+          "30"
+        ]
+      ],
+      "forbidden": [],
+      "split": "dev",
+      "category": "regression"
+    },
+    {
+      "id": "export",
+      "question": "青禾云单次最多导出多少条记录，下载链接多久失效？",
+      "documents": [
+        "export"
+      ],
+      "required": [
+        [
+          "50000",
+          "50,000",
+          "5万",
+          "五万"
+        ],
+        [
+          "24小时",
+          "24 小时",
+          "一天",
+          "1天"
+        ]
+      ],
+      "forbidden": [],
+      "split": "dev",
+      "category": "regression"
+    },
+    {
+      "id": "combined",
+      "question": "青禾云基础版每月价格是多少？人工客服在工作日几点到几点服务？",
+      "documents": [
+        "plan",
+        "support"
+      ],
+      "required": [
+        [
+          "39"
+        ],
+        [
+          "09:00",
+          "9:00",
+          "9点",
+          "九点"
+        ],
+        [
+          "18:00",
+          "18点",
+          "六点",
+          "6点"
+        ]
+      ],
+      "forbidden": [],
+      "split": "dev",
+      "category": "regression"
+    },
+    {
+      "id": "unknown",
+      "question": "青禾云企业定制版的年度价格是多少？",
+      "documents": [],
+      "required": [
+        [
+          "文档未提供"
+        ]
+      ],
+      "forbidden": [
+        "999",
+        "9999"
+      ],
+      "unanswerable": true,
+      "split": "dev",
+      "category": "unknown"
+    },
+    {
+      "id": "dev_renew",
+      "question": "青禾云续费订单能申请首次购买全额退款吗？",
+      "documents": [
+        "refund"
+      ],
+      "required": [
+        [
+          "不能",
+          "不适用",
+          "不可以",
+          "无法"
+        ]
+      ],
+      "forbidden": [],
+      "split": "dev",
+      "category": "negation",
+      "unanswerable": false
+    },
+    {
+      "id": "dev_sms",
+      "question": "青禾云每月赠送多少条短信？",
+      "documents": [],
+      "required": [],
+      "forbidden": [],
+      "split": "dev",
+      "category": "unknown",
+      "unanswerable": true
+    },
+    {
+      "id": "base_capacity",
+      "question": "青禾云基础版提供多少存储空间和成员席位？",
+      "documents": [
+        "plan"
+      ],
+      "required": [
+        [
+          "20GB",
+          "20 GB"
+        ],
+        [
+          "3个",
+          "3 个",
+          "三个"
+        ]
+      ],
+      "forbidden": [],
+      "split": "heldout",
+      "category": "fact",
+      "unanswerable": false
+    },
+    {
+      "id": "pro_members",
+      "question": "青禾云专业版包含多少个成员席位？",
+      "documents": [
+        "plan"
+      ],
+      "required": [
+        [
+          "20",
+          "二十"
+        ]
+      ],
+      "forbidden": [],
+      "split": "heldout",
+      "category": "fact",
+      "unanswerable": false
+    },
+    {
+      "id": "backup_time",
+      "question": "青禾云每天几点执行自动备份？",
+      "documents": [
+        "backup"
+      ],
+      "required": [
+        [
+          "02:00",
+          "2:00",
+          "2点",
+          "两点"
+        ]
+      ],
+      "forbidden": [],
+      "split": "heldout",
+      "category": "fact",
+      "unanswerable": false
+    },
+    {
+      "id": "export_formats",
+      "question": "青禾云支持哪两种数据导出格式？",
+      "documents": [
+        "export"
+      ],
+      "required": [
+        [
+          "CSV"
+        ],
+        [
+          "JSON"
+        ]
+      ],
+      "forbidden": [],
+      "split": "heldout",
+      "category": "fact",
+      "unanswerable": false
+    },
+    {
+      "id": "refund_allowed",
+      "question": "青禾云首次购买后2天，从未创建项目，符合全额退款条件吗？",
+      "documents": [
+        "refund"
+      ],
+      "required": [
+        [
+          "符合",
+          "可以",
+          "能申请"
+        ]
+      ],
+      "forbidden": [
+        "不符合",
+        "不能",
+        "不可以",
+        "无法"
+      ],
+      "split": "heldout",
+      "category": "conditions",
+      "unanswerable": false
+    },
+    {
+      "id": "deleted_project",
+      "question": "青禾云首次购买2天，创建项目后又删除，能申请首次购买全额退款吗？",
+      "documents": [
+        "refund"
+      ],
+      "required": [
+        [
+          "不能",
+          "不可以",
+          "不适用",
+          "不符合",
+          "无法"
+        ]
+      ],
+      "forbidden": [],
+      "split": "heldout",
+      "category": "negation",
+      "unanswerable": false
+    },
+    {
+      "id": "member_files",
+      "question": "青禾云移除离职成员后，此人以前创建的团队文件会自动删除吗？",
+      "documents": [
+        "account"
+      ],
+      "required": [
+        [
+          "不会",
+          "不自动",
+          "不删除",
+          "不会自动删除"
+        ]
+      ],
+      "forbidden": [],
+      "split": "heldout",
+      "category": "negation",
+      "unanswerable": false
+    },
+    {
+      "id": "emptied_bin",
+      "question": "青禾云管理员手工清空回收站后，还能从回收站恢复这些文件吗？",
+      "documents": [
+        "backup"
+      ],
+      "required": [
+        [
+          "不能",
+          "不可以",
+          "无法"
+        ]
+      ],
+      "forbidden": [],
+      "split": "heldout",
+      "category": "negation",
+      "unanswerable": false
+    },
+    {
+      "id": "expired_export",
+      "question": "青禾云导出文件的下载链接过期了怎么办？",
+      "documents": [
+        "export"
+      ],
+      "required": [
+        [
+          "重新生成"
+        ]
+      ],
+      "forbidden": [],
+      "split": "heldout",
+      "category": "fact",
+      "unanswerable": false
+    },
+    {
+      "id": "plan_change",
+      "question": "青禾云更改套餐后何时生效？当前账期用哪个套餐？",
+      "documents": [
+        "plan"
+      ],
+      "required": [
+        [
+          "下一个账期",
+          "下一账期",
+          "下个账期"
+        ],
+        [
+          "原套餐",
+          "原来的套餐"
+        ]
+      ],
+      "forbidden": [],
+      "split": "heldout",
+      "category": "conditions",
+      "unanswerable": false
+    },
+    {
+      "id": "storage_count",
+      "question": "青禾云回收站里的文件也计入团队容量吗？",
+      "documents": [
+        "plan"
+      ],
+      "required": [
+        [
+          "包括",
+          "计入",
+          "包含",
+          "计算",
+          "也占用"
+        ]
+      ],
+      "forbidden": [
+        "不计入",
+        "不包括",
+        "不包含",
+        "不会计入"
+      ],
+      "split": "heldout",
+      "category": "conditions",
+      "unanswerable": false
+    },
+    {
+      "id": "export_split",
+      "question": "青禾云导出60000条记录应如何处理？",
+      "documents": [
+        "export"
+      ],
+      "required": [
+        [
+          "分批",
+          "拆分",
+          "分多次"
+        ],
+        [
+          "日期",
+          "项目"
+        ]
+      ],
+      "forbidden": [],
+      "split": "heldout",
+      "category": "conditions",
+      "unanswerable": false
+    },
+    {
+      "id": "cross_price_backup",
+      "question": "青禾云基础版月费和自动备份保留天数分别是多少？",
+      "documents": [
+        "plan",
+        "backup"
+      ],
+      "required": [
+        [
+          "39"
+        ],
+        [
+          "14"
+        ]
+      ],
+      "forbidden": [],
+      "split": "heldout",
+      "category": "cross_document",
+      "unanswerable": false
+    },
+    {
+      "id": "cross_support_export",
+      "question": "青禾云人工客服工作日服务时间是什么？导出链接有效期多长？",
+      "documents": [
+        "support",
+        "export"
+      ],
+      "required": [
+        [
+          "09:00",
+          "9:00",
+          "9点",
+          "九点"
+        ],
+        [
+          "18:00",
+          "18点",
+          "六点",
+          "6点"
+        ],
+        [
+          "24小时",
+          "24 小时",
+          "一天",
+          "1天"
+        ]
+      ],
+      "forbidden": [],
+      "split": "heldout",
+      "category": "cross_document",
+      "unanswerable": false
+    },
+    {
+      "id": "invoice_tax",
+      "question": "青禾云开具增值税发票的税率是多少？",
+      "documents": [],
+      "required": [],
+      "forbidden": [],
+      "split": "heldout",
+      "category": "unknown",
+      "unanswerable": true
+    },
+    {
+      "id": "support_phone",
+      "question": "青禾云人工客服的电话号码是什么？",
+      "documents": [],
+      "required": [],
+      "forbidden": [],
+      "split": "heldout",
+      "category": "unknown",
+      "unanswerable": true
+    },
+    {
+      "id": "enterprise_storage",
+      "question": "青禾云企业定制版包含多少GB存储空间？",
+      "documents": [],
+      "required": [],
+      "forbidden": [],
+      "split": "heldout",
+      "category": "unknown",
+      "unanswerable": true
+    },
+    {
+      "id": "uptime_sla",
+      "question": "青禾云承诺的全年服务可用性百分比是多少？",
+      "documents": [],
+      "required": [],
+      "forbidden": [],
+      "split": "heldout",
+      "category": "unknown",
+      "unanswerable": true
+    },
+    {
+      "id": "refund_arrival",
+      "question": "青禾云退款审核通过后，保证几个工作日到账？",
+      "documents": [],
+      "required": [],
+      "forbidden": [],
+      "split": "heldout",
+      "category": "unknown",
+      "unanswerable": true
+    },
+    {
+      "id": "password_length",
+      "question": "青禾云登录密码最少需要多少个字符？",
+      "documents": [],
+      "required": [],
+      "forbidden": [],
+      "split": "heldout",
+      "category": "unknown",
+      "unanswerable": true
+    },
+    {
+      "id": "api_limit",
+      "question": "青禾云API每分钟最多允许多少次请求？",
+      "documents": [],
+      "required": [],
+      "forbidden": [],
+      "split": "heldout",
+      "category": "unknown",
+      "unanswerable": true
+    },
+    {
+      "id": "backup_region",
+      "question": "青禾云自动备份存储在哪个城市的数据中心？",
+      "documents": [],
+      "required": [],
+      "forbidden": [],
+      "split": "heldout",
+      "category": "unknown",
+      "unanswerable": true
+    },
+    {
+      "id": "export_zip",
+      "question": "青禾云导出任务生成的压缩包使用什么压缩算法？",
+      "documents": [],
+      "required": [],
+      "forbidden": [],
+      "split": "heldout",
+      "category": "unknown",
+      "unanswerable": true
+    },
+    {
+      "id": "invite_hours",
+      "question": "青禾云成员邀请链接发出后具体几小时过期？",
+      "documents": [],
+      "required": [],
+      "forbidden": [],
+      "split": "heldout",
+      "category": "unknown",
+      "unanswerable": true
+    }
+  ],
+  "grading_revision": 2,
+  "grading_changes_after_heldout": "Only grader hardening after inspecting saved heldout answers: add forbidden negations for refund_allowed and storage_count. No prompt, model, retrieval or question changed; historical raw grades remain in run archives. Full-answer review is post-hoc model-assisted, not independent human evaluation."
+}

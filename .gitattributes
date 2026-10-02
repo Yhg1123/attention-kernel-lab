@@ -1,3 +1,4 @@
 *.py text eol=lf
 *.json text eol=lf
 *.html text eol=lf
+results/**/source/** -text whitespace=cr-at-eol

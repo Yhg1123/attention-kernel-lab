@@ -13,6 +13,8 @@ jobs:
           python-version: '3.12'
       - run: python -m pip install torch==${{ matrix.torch-version }} --index-url https://download.pytorch.org/whl/cpu
       - run: python -m unittest discover -s tests -v
+      - run: python qa_quality.py --output results/2026-10-02-qa-quality-dev --verify-only
+      - run: python qa_quality.py --output results/2026-10-02-qa-quality-heldout --verify-only
       - run: python benchmark.py --device cpu --lengths 16 --warmup 1 --repeats 2 --output smoke-results
       - run: python profile_workloads.py --device cpu --dtypes float32 --lengths 16 --batch-sizes 1 --warmup 1 --samples 3 --trials 2 --output smoke-results/profiles
       - run: python select_profile.py --run smoke-results/profiles --output smoke-results/policy.json --min-trials 2

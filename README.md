@@ -6,6 +6,8 @@ An evidence based comparison of causal attention implementations on 4 GB and 8 G
 
 ## 完整中文问答应用（2026-10-01）
 
+2026-10-02：[扩展质量验收](QA_QUALITY.md)完成 32 道题、128 次 HTTP 请求，修正了“答反却通过”的关键词检查漏洞，保留所有原始结果和事后复核。加强提示词没有解决事实错误，不能当成可靠性改进部署。
+
 新增无需 AI API 的本地文档问答演示：网页提问、BM25 检索、固定版本 Qwen2.5-1.5B 模型、KV cache 生成和流式回答。测试从 HTTP 请求开始计时，记录首段文字、整段回答、显存和完整答案，并用固定输出长度排除回答长短的干扰。
 
 [启动演示与测试方法](QA_TESTING.md) · [正式应用测试报告](results/2026-10-01-qa-http-worker/README.md) · [失败配置及预检记录](results/2026-10-01-qa-preflight/README.md)

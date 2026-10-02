@@ -1,0 +1,5 @@
+answer_policy,context,requests,answerable,answerable_pass,unanswerable,correct_refusal,unsupported_answers,false_refusals,retrieval_misses,token_limit_hits,first_text_median_ms,total_median_ms
+baseline,long,8,6,6,2,0,2,0,0,0,129.65105002513155,721.4987999759614
+baseline,short,8,6,6,2,2,0,0,0,0,61.51224998757243,787.8062999225222
+strict,long,8,6,6,2,1,1,0,0,0,150.56490001734346,838.3569500292651
+strict,short,8,6,6,2,2,0,0,0,0,67.8634499781765,787.1701999683864

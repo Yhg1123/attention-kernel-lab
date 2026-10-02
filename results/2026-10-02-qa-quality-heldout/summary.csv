@@ -1,0 +1,5 @@
+answer_policy,context,requests,answerable,answerable_pass,unanswerable,correct_refusal,refusal_contract_failures,false_refusals,retrieval_misses,token_limit_hits,first_text_median_ms,total_median_ms
+baseline,long,24,14,14,10,3,7,0,0,0,137.41169997956604,621.0581999621354
+baseline,short,24,14,14,10,5,5,0,0,0,53.808750002644956,550.6315999664366
+strict,long,24,14,14,10,5,5,0,0,0,148.12315005110577,668.3122999966145
+strict,short,24,14,14,10,6,4,0,0,0,57.014500023797154,588.573299930431

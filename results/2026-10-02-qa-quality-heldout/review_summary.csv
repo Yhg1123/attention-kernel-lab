@@ -1,0 +1,5 @@
+answer_policy,context,questions,review_pass,grounded_correct,grounded_refusal,grounded_nonanswer,wrong_fact,unsupported_claim
+baseline,short,24,19,12,7,2,2,1
+baseline,long,24,20,13,7,2,1,1
+strict,short,24,18,11,7,2,2,2
+strict,long,24,18,11,7,2,1,3

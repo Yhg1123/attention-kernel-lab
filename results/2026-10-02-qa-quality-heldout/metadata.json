@@ -1,0 +1,40 @@
+{
+  "schema": "qa-quality-v1",
+  "started_utc": "2026-10-02T08:56:57.384835+00:00",
+  "split": "heldout",
+  "model": "Qwen/Qwen2.5-1.5B-Instruct",
+  "revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+  "variant": "cuda_eager_bf16",
+  "source_sha256": {
+    "qa_app.py": "dfa9c6a180b4caf013138294a158e9a645ebcb076e4bfb97c6be2261a712a8b5",
+    "qa_benchmark.py": "9d7929799d7339aec73572276546d5a58d088d9b02ea7064d3a7d382aa2a284c",
+    "qa_quality.py": "7a3c451b559e0d0a452dea5724515b970c4372467059e3d3035c305eadc48d47",
+    "qa_quality_cases.json": "a5745d83a22c8faa267e914b0762dbd41b1d7bbda0abfbbee3eeeb5766054d53",
+    "qa_fixtures.json": "6e118efe0aa6b9ad2042d5926e9b7410443136f000be38fe15a8ca2dcb7d9687",
+    "qa_evidence.py": "2962ec039d026dd81077dff54f6127aa3856618bd2b43a88b20374fa667cf0bb",
+    "qa_ui.html": "04cfaa415e96034ab95d7f584e89b6290e81cd1a8de7383419a580a1a3296e9c",
+    "bench_utils.py": "363ecef7417b761523c589a5b136f4674697efe3922186eb98a252b61f1dc466"
+  },
+  "protocol": "Before inference: freeze 8 development and 24 heldout questions, baseline and one generic strict prompt. Evaluate dev, freeze prompt before heldout; do not tune against heldout. Both policies use identical question/docs/retrieval/model/dtype, differ only in system prompt. Greedy, max_new_tokens=96, short/long, one request per cell. Exact normalized refusal required for unknowns; keyword checks for known answers plus saved full text for model-assisted review. No human-independent accuracy claim.",
+  "unique_questions": 24,
+  "grading": "refusal_contract_fail means not the exact required refusal, NOT necessarily hallucination; benign paraphrases also fail this strict formatting contract. Inspect raw text and review separately for factual support.",
+  "timing": "Sequential loopback HTTP, warm model, no answer cache; includes prompt/retrieval/generation. One observation per case/policy/context, natural output lengths; descriptive only, not kernel speedup or robust tail latency.",
+  "environment": {
+    "python": "3.12.6",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "cpu": "AMD Ryzen 9 8945HX with Radeon Graphics",
+    "cpu_threads": 4,
+    "torch": "2.10.0+cu128",
+    "cuda_runtime": "12.8",
+    "driver": "582.05",
+    "gpu": "NVIDIA GeForce RTX 5070 Laptop GPU",
+    "gpu_capability": [
+      12,
+      0
+    ],
+    "quantized_engine": "onednn",
+    "matmul_allow_tf32": false
+  },
+  "load_seconds": 7.411587500013411,
+  "completed_utc": "2026-10-02T08:58:12.626972+00:00"
+}
