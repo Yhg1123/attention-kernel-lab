@@ -1,0 +1,5 @@
+baseline,candidate,context,mode,pairs,median_paired_total_speedup,min_paired_total_speedup,max_paired_total_speedup,identical_outputs
+cuda_eager_bf16,cuda_sdpa_bf16,long,fixed,10,0.9765919676993207,0.76763868331378,1.1565678537194837,0
+cuda_eager_bf16,cuda_sdpa_bf16,long,natural,60,0.9428544748209685,0.544584119968274,1.6193828093515514,40
+cuda_eager_bf16,cuda_sdpa_bf16,short,fixed,10,1.0122902485373309,0.762190606488366,1.2117324485696983,0
+cuda_eager_bf16,cuda_sdpa_bf16,short,natural,60,0.9425858888744796,0.14964218913037386,1.804233722704571,30

@@ -1,0 +1,11 @@
+{
+  "requests": 280,
+  "paired_comparisons": 140,
+  "complete_unique_requests": true,
+  "finite_timings": true,
+  "prompt_pairs_equal": true,
+  "fixed_token_counts_equal": true,
+  "measured_source_hashes_match": true,
+  "source_location": "archive",
+  "analyzer_sha256": "351c926901920be7ef7daa5dcb290fdf1898653c313e63f81098e546b3e4d3ab"
+}

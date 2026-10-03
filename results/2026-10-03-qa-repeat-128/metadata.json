@@ -1,0 +1,245 @@
+{
+  "schema_version": "qa-http-v1",
+  "started_utc": "2026-10-03T14:49:28.379068+00:00",
+  "model": "Qwen/Qwen2.5-1.5B-Instruct",
+  "model_revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+  "model_license": "Apache-2.0",
+  "fixture_sha256": "6e118efe0aa6b9ad2042d5926e9b7410443136f000be38fe15a8ca2dcb7d9687",
+  "environment": {
+    "python": "3.12.6",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "cpu": "AMD Ryzen 9 8945HX with Radeon Graphics",
+    "cpu_threads": 4,
+    "torch": "2.10.0+cu128",
+    "cuda_runtime": "12.8",
+    "driver": "582.05",
+    "gpu": "NVIDIA GeForce RTX 5070 Laptop GPU",
+    "gpu_capability": [
+      12,
+      0
+    ],
+    "quantized_engine": "onednn",
+    "matmul_allow_tf32": false
+  },
+  "arguments": {
+    "output": "results\\2026-10-03-qa-repeat-128",
+    "variants": [
+      "cuda_eager_bf16",
+      "cuda_sdpa_bf16"
+    ],
+    "trials": 10,
+    "threads": 4,
+    "max_new_tokens": 96,
+    "fixed_tokens": 128,
+    "question_ids": null,
+    "local_files_only": true
+  },
+  "variant_order_by_trial": [
+    [
+      "cuda_sdpa_bf16",
+      "cuda_eager_bf16"
+    ],
+    [
+      "cuda_sdpa_bf16",
+      "cuda_eager_bf16"
+    ],
+    [
+      "cuda_eager_bf16",
+      "cuda_sdpa_bf16"
+    ],
+    [
+      "cuda_eager_bf16",
+      "cuda_sdpa_bf16"
+    ],
+    [
+      "cuda_eager_bf16",
+      "cuda_sdpa_bf16"
+    ],
+    [
+      "cuda_sdpa_bf16",
+      "cuda_eager_bf16"
+    ],
+    [
+      "cuda_sdpa_bf16",
+      "cuda_eager_bf16"
+    ],
+    [
+      "cuda_eager_bf16",
+      "cuda_sdpa_bf16"
+    ],
+    [
+      "cuda_sdpa_bf16",
+      "cuda_eager_bf16"
+    ],
+    [
+      "cuda_eager_bf16",
+      "cuda_sdpa_bf16"
+    ]
+  ],
+  "generation": "greedy; KV cache; batch=1; fresh conversation; no answer cache",
+  "comparison": "GPU eager vs stock Transformers SDPA at identical dtype; FP32 CPU eager vs dynamic INT8. _mlp quantizes only named MLP Linear layers; plain int8 quantizes every Linear. Embeddings/norm remain FP32.",
+  "timing": "Loopback HTTP POST through retrieval, tokenization, transfers, generation, decoding and streamed response. Client TTFT is first nonempty text chunk, not GPU first token. Completion is receipt of done event. Browser paint, Internet latency, model loading and warmup excluded.",
+  "quality": "Six authored fixture questions, substring fact assertions plus saved answers for human inspection. Repeats are not independent quality examples. Fixed-length cases are only speed controls, not scored for quality.",
+  "scope": "One sequential user; persistent inference worker across HTTP requests; no production load/concurrency claim. Short=top 2 BM25 docs; long=all 6 docs with top 2 first. Same full documents across variants, no truncation. Every generated step checks invalid logits, including synchronization overhead in both baselines and candidates.",
+  "packages": {
+    "certifi": "2026.7.22",
+    "charset-normalizer": "3.5.2",
+    "colorama": "0.4.6",
+    "filelock": "3.32.3",
+    "fsspec": "2026.7.0",
+    "huggingface_hub": "0.36.2",
+    "idna": "3.20",
+    "Jinja2": "3.1.6",
+    "MarkupSafe": "3.0.3",
+    "mpmath": "1.3.0",
+    "networkx": "3.6.1",
+    "numpy": "2.5.3",
+    "packaging": "26.3",
+    "pip": "24.2",
+    "pyarrow": "23.0.1",
+    "PyYAML": "6.0.3",
+    "regex": "2026.9.29",
+    "requests": "2.34.2",
+    "safetensors": "0.8.0",
+    "setuptools": "78.1.0",
+    "sympy": "1.14.0",
+    "tokenizers": "0.22.2",
+    "torch": "2.10.0+cu128",
+    "tqdm": "4.70.1",
+    "transformers": "4.57.6",
+    "typing_extensions": "4.16.0",
+    "urllib3": "2.8.0"
+  },
+  "source_sha256": {
+    "qa_app.py": "ccf8a64338dd8ee5a54404b1165e55ce719543060890bf940e57f5e19ecc3c6e",
+    "qa_benchmark.py": "9d7929799d7339aec73572276546d5a58d088d9b02ea7064d3a7d382aa2a284c",
+    "qa_ui.html": "c3433cb20f5c566d71ede89d7bac070443b13890683ec0b39ff233c4aaabbba4",
+    "qa_fixtures.json": "6e118efe0aa6b9ad2042d5926e9b7410443136f000be38fe15a8ca2dcb7d9687",
+    "qa_evidence.py": "2962ec039d026dd81077dff54f6127aa3856618bd2b43a88b20374fa667cf0bb",
+    "bench_utils.py": "363ecef7417b761523c589a5b136f4674697efe3922186eb98a252b61f1dc466"
+  },
+  "loads": [
+    {
+      "trial": 0,
+      "variant": "cuda_sdpa_bf16",
+      "seconds": 7.0024008001200855,
+      "quantization_engine": "onednn"
+    },
+    {
+      "trial": 0,
+      "variant": "cuda_eager_bf16",
+      "seconds": 2.079412200022489,
+      "quantization_engine": "onednn"
+    },
+    {
+      "trial": 1,
+      "variant": "cuda_sdpa_bf16",
+      "seconds": 2.0148601001128554,
+      "quantization_engine": "onednn"
+    },
+    {
+      "trial": 1,
+      "variant": "cuda_eager_bf16",
+      "seconds": 2.036977000068873,
+      "quantization_engine": "onednn"
+    },
+    {
+      "trial": 2,
+      "variant": "cuda_eager_bf16",
+      "seconds": 1.995031900005415,
+      "quantization_engine": "onednn"
+    },
+    {
+      "trial": 2,
+      "variant": "cuda_sdpa_bf16",
+      "seconds": 1.9744019999634475,
+      "quantization_engine": "onednn"
+    },
+    {
+      "trial": 3,
+      "variant": "cuda_eager_bf16",
+      "seconds": 1.9757925001904368,
+      "quantization_engine": "onednn"
+    },
+    {
+      "trial": 3,
+      "variant": "cuda_sdpa_bf16",
+      "seconds": 2.0309493001550436,
+      "quantization_engine": "onednn"
+    },
+    {
+      "trial": 4,
+      "variant": "cuda_eager_bf16",
+      "seconds": 2.067919700173661,
+      "quantization_engine": "onednn"
+    },
+    {
+      "trial": 4,
+      "variant": "cuda_sdpa_bf16",
+      "seconds": 2.069098599953577,
+      "quantization_engine": "onednn"
+    },
+    {
+      "trial": 5,
+      "variant": "cuda_sdpa_bf16",
+      "seconds": 1.9437543000094593,
+      "quantization_engine": "onednn"
+    },
+    {
+      "trial": 5,
+      "variant": "cuda_eager_bf16",
+      "seconds": 2.0533943998161703,
+      "quantization_engine": "onednn"
+    },
+    {
+      "trial": 6,
+      "variant": "cuda_sdpa_bf16",
+      "seconds": 2.023034900194034,
+      "quantization_engine": "onednn"
+    },
+    {
+      "trial": 6,
+      "variant": "cuda_eager_bf16",
+      "seconds": 2.0997249998617917,
+      "quantization_engine": "onednn"
+    },
+    {
+      "trial": 7,
+      "variant": "cuda_eager_bf16",
+      "seconds": 2.0355503000319004,
+      "quantization_engine": "onednn"
+    },
+    {
+      "trial": 7,
+      "variant": "cuda_sdpa_bf16",
+      "seconds": 2.0852393000386655,
+      "quantization_engine": "onednn"
+    },
+    {
+      "trial": 8,
+      "variant": "cuda_sdpa_bf16",
+      "seconds": 2.015799399930984,
+      "quantization_engine": "onednn"
+    },
+    {
+      "trial": 8,
+      "variant": "cuda_eager_bf16",
+      "seconds": 2.0924291000701487,
+      "quantization_engine": "onednn"
+    },
+    {
+      "trial": 9,
+      "variant": "cuda_eager_bf16",
+      "seconds": 2.0974316000938416,
+      "quantization_engine": "onednn"
+    },
+    {
+      "trial": 9,
+      "variant": "cuda_sdpa_bf16",
+      "seconds": 2.2021524000447243,
+      "quantization_engine": "onednn"
+    }
+  ],
+  "completed_utc": "2026-10-03T14:57:12.860294+00:00",
+  "requests": 280
+}

@@ -1,0 +1,13 @@
+{
+  "analyzer_sha256": "655eb8183c0e693d87cc3cfa7d91a1cf484dd5ec4f1086bac0d9e666303f7a79",
+  "request_sha256": "69a490cffd4a2f0fd06db88a62b3d481fe56987c2923f80c3c2300fde69e7f30",
+  "request_hash_newlines": "LF",
+  "bootstrap": "10000 draws, seed 20261003, resample entire trial log-mean paired ratios, percentile 2.5/97.5%. Ratio >1 favors candidate. Conditional on this one machine/day/workload; small trial count and uncontrolled clock/background activity limit interpretation. Natural outputs can differ, so only fixed-token rows control output count.",
+  "completed_requests": 280,
+  "distinct_questions": 6,
+  "source_run_completed": "2026-10-03T14:57:12.860294+00:00",
+  "analysis_source_sha256": {
+    "analyze_qa_repeats.py": "655eb8183c0e693d87cc3cfa7d91a1cf484dd5ec4f1086bac0d9e666303f7a79",
+    "summarize_qa.py": "351c926901920be7ef7daa5dcb290fdf1898653c313e63f81098e546b3e4d3ab"
+  }
+}
