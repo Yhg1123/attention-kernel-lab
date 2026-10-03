@@ -8,6 +8,8 @@
 
 ## 启动演示
 
+新增 [10 轮重复测量](results/2026-10-03-qa-repeat-128/INTERPRETATION.md)和 [1/2/4 客户端负载测试](results/2026-10-03-qa-load/INTERPRETATION.md)。运行 `python qa_load.py --output results/my-load --trials 3` 可复测同一 HTTP 服务的队列、首段文字与吞吐；每个客户端一次只有一个在途请求，服务仍逐个执行生成。
+
 网页回答下方可展开“本次参考原文”，查看实际提供给模型的完整文档。原文通过文本节点显示；它表示检索输入，不表示每条模型断言都已经核验正确。API 的完成事件也返回 `retrieved_documents`，按 `retrieved_ids` 顺序排列。历史计时数据对应各自 source 快照，不能把本次新增响应字段算入旧实验耗时。
 
 先安装适合设备的 PyTorch。RTX 5070 使用 `requirements-cu128.txt`；在同一 Python 环境安装 `pip install -r requirements-qa.txt`。

@@ -1,0 +1,170 @@
+[
+  {
+    "variant": "cuda_eager_bf16",
+    "context": "long",
+    "question_id": "combined",
+    "answer": "青禾云基础版每月费用为39元，人工客服的工作时间为工作日的09:00至18:00。",
+    "occurrences": 18
+  },
+  {
+    "variant": "cuda_eager_bf16",
+    "context": "long",
+    "question_id": "export",
+    "answer": "青禾云单次最多可导出50000条记录。下载链接的有效期为24小时。",
+    "occurrences": 18
+  },
+  {
+    "variant": "cuda_eager_bf16",
+    "context": "long",
+    "question_id": "price",
+    "answer": "青禾云专业版每月费用为99元，包含200GB团队存储空间。",
+    "occurrences": 18
+  },
+  {
+    "variant": "cuda_eager_bf16",
+    "context": "long",
+    "question_id": "refund",
+    "answer": "不可以，因为已经创建了项目，所以不符合首次购买退款的条件。",
+    "occurrences": 18
+  },
+  {
+    "variant": "cuda_eager_bf16",
+    "context": "long",
+    "question_id": "retention",
+    "answer": "青禾云自动备份保留14天。回收站文件保留30天。",
+    "occurrences": 18
+  },
+  {
+    "variant": "cuda_eager_bf16",
+    "context": "long",
+    "question_id": "unknown",
+    "answer": "青禾云企业定制版的年度价格为199元。",
+    "occurrences": 18
+  },
+  {
+    "variant": "cuda_eager_bf16",
+    "context": "short",
+    "question_id": "combined",
+    "answer": "青禾云基础版每月价格为39元。\n青禾云人工客服的工作时间为工作日的09:00至18:00。",
+    "occurrences": 18
+  },
+  {
+    "variant": "cuda_eager_bf16",
+    "context": "short",
+    "question_id": "export",
+    "answer": "青禾云单次最多导出50000条记录，下载链接有效期为24小时。",
+    "occurrences": 18
+  },
+  {
+    "variant": "cuda_eager_bf16",
+    "context": "short",
+    "question_id": "price",
+    "answer": "青禾云专业版每月费用为99元，包含200GB团队存储空间。",
+    "occurrences": 18
+  },
+  {
+    "variant": "cuda_eager_bf16",
+    "context": "short",
+    "question_id": "refund",
+    "answer": "不能。",
+    "occurrences": 18
+  },
+  {
+    "variant": "cuda_eager_bf16",
+    "context": "short",
+    "question_id": "retention",
+    "answer": "青禾云自动备份保留14天，回收站文件保留30天。",
+    "occurrences": 18
+  },
+  {
+    "variant": "cuda_eager_bf16",
+    "context": "short",
+    "question_id": "unknown",
+    "answer": "文档未提供。",
+    "occurrences": 18
+  },
+  {
+    "variant": "cuda_sdpa_bf16",
+    "context": "long",
+    "question_id": "combined",
+    "answer": "青禾云基础版每月费用为39元，人工客服的工作时间为工作日的09:00至18:00。",
+    "occurrences": 18
+  },
+  {
+    "variant": "cuda_sdpa_bf16",
+    "context": "long",
+    "question_id": "export",
+    "answer": "青禾云单次最多可导出50000条记录。下载链接的有效期为24小时。",
+    "occurrences": 18
+  },
+  {
+    "variant": "cuda_sdpa_bf16",
+    "context": "long",
+    "question_id": "price",
+    "answer": "青禾云专业版每月费用为99元，包含200GB团队存储空间。",
+    "occurrences": 18
+  },
+  {
+    "variant": "cuda_sdpa_bf16",
+    "context": "long",
+    "question_id": "refund",
+    "answer": "不可以，因为已经创建了项目，所以不符合首次购买退款的条件。",
+    "occurrences": 18
+  },
+  {
+    "variant": "cuda_sdpa_bf16",
+    "context": "long",
+    "question_id": "retention",
+    "answer": "青禾云自动备份保留14天。回收站文件保留30天。超过30天后自动清理。",
+    "occurrences": 18
+  },
+  {
+    "variant": "cuda_sdpa_bf16",
+    "context": "long",
+    "question_id": "unknown",
+    "answer": "青禾云企业定制版的年度价格为99元。",
+    "occurrences": 18
+  },
+  {
+    "variant": "cuda_sdpa_bf16",
+    "context": "short",
+    "question_id": "combined",
+    "answer": "青禾云基础版每月费用为39元。\n青禾云人工客服的工作时间为工作日的09:00至18:00。",
+    "occurrences": 18
+  },
+  {
+    "variant": "cuda_sdpa_bf16",
+    "context": "short",
+    "question_id": "export",
+    "answer": "青禾云单次最多导出50000条记录。下载链接的有效期为24小时。",
+    "occurrences": 18
+  },
+  {
+    "variant": "cuda_sdpa_bf16",
+    "context": "short",
+    "question_id": "price",
+    "answer": "青禾云专业版每月费用为99元，包含200GB团队存储空间。",
+    "occurrences": 18
+  },
+  {
+    "variant": "cuda_sdpa_bf16",
+    "context": "short",
+    "question_id": "refund",
+    "answer": "不能。已经有创建项目的订单不适用首次购买退款规则。",
+    "occurrences": 18
+  },
+  {
+    "variant": "cuda_sdpa_bf16",
+    "context": "short",
+    "question_id": "retention",
+    "answer": "青禾云自动备份保留14天，回收站文件保留30天。",
+    "occurrences": 18
+  },
+  {
+    "variant": "cuda_sdpa_bf16",
+    "context": "short",
+    "question_id": "unknown",
+    "answer": "文档未提供。",
+    "occurrences": 18
+  }
+]

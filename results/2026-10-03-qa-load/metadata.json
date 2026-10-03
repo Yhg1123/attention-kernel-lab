@@ -1,0 +1,343 @@
+{
+  "schema": "qa-load-v1",
+  "started_utc": "2026-10-03T14:57:54.629429+00:00",
+  "model": "Qwen/Qwen2.5-1.5B-Instruct",
+  "revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+  "arguments": {
+    "output": "results\\2026-10-03-qa-load",
+    "trials": 3,
+    "clients": [
+      1,
+      2,
+      4
+    ],
+    "repetitions": 2,
+    "variants": [
+      "cuda_eager_bf16",
+      "cuda_sdpa_bf16"
+    ],
+    "verify_only": false
+  },
+  "source_sha256": {
+    "qa_load.py": "9ed19e3d84395b919520b7cf19d684c6dee502b63b47e307b0d69b669057b839",
+    "qa_app.py": "ccf8a64338dd8ee5a54404b1165e55ce719543060890bf940e57f5e19ecc3c6e",
+    "qa_benchmark.py": "9d7929799d7339aec73572276546d5a58d088d9b02ea7064d3a7d382aa2a284c",
+    "qa_evidence.py": "2962ec039d026dd81077dff54f6127aa3856618bd2b43a88b20374fa667cf0bb",
+    "qa_fixtures.json": "6e118efe0aa6b9ad2042d5926e9b7410443136f000be38fe15a8ca2dcb7d9687",
+    "qa_ui.html": "c3433cb20f5c566d71ede89d7bac070443b13890683ec0b39ff233c4aaabbba4",
+    "bench_utils.py": "363ecef7417b761523c589a5b136f4674697efe3922186eb98a252b61f1dc466"
+  },
+  "packages": {
+    "torch": "2.10.0+cu128",
+    "transformers": "4.57.6",
+    "numpy": "2.5.3",
+    "safetensors": "0.8.0"
+  },
+  "protocol": "Closed-loop clients, one outstanding HTTP request per client; first requests barrier-released. Identical shuffled 6-question workload repeated twice by default across client counts. Single persistent inference worker, no batching, no answer cache. Fresh model per variant/trial; warm each question/context once before measured groups. Group order shuffled per trial, variant order shuffled independently. Model load and warmup excluded. Entire group ends before next starts.",
+  "timing": "First nonempty HTTP text; full done-event latency; server queue time; group duration from barrier release to last client return. Throughput=successful requests/full group seconds, including failed request time. Closed-loop finite workload: not an open-loop arrival-rate or production capacity test. P95 is nearest rank, descriptive only.",
+  "quality": "Existing six regression questions, no new independent examples. Keyword checks are preliminary, inspect saved answers. Compare token IDs across client counts. No quality improvement claim.",
+  "groups": [
+    {
+      "trial": 0,
+      "variant": "cuda_eager_bf16",
+      "context": "long",
+      "clients": 4,
+      "jobs": 12
+    },
+    {
+      "trial": 0,
+      "variant": "cuda_eager_bf16",
+      "context": "long",
+      "clients": 2,
+      "jobs": 12
+    },
+    {
+      "trial": 0,
+      "variant": "cuda_eager_bf16",
+      "context": "long",
+      "clients": 1,
+      "jobs": 12
+    },
+    {
+      "trial": 0,
+      "variant": "cuda_eager_bf16",
+      "context": "short",
+      "clients": 2,
+      "jobs": 12
+    },
+    {
+      "trial": 0,
+      "variant": "cuda_eager_bf16",
+      "context": "short",
+      "clients": 4,
+      "jobs": 12
+    },
+    {
+      "trial": 0,
+      "variant": "cuda_eager_bf16",
+      "context": "short",
+      "clients": 1,
+      "jobs": 12
+    },
+    {
+      "trial": 0,
+      "variant": "cuda_sdpa_bf16",
+      "context": "long",
+      "clients": 4,
+      "jobs": 12
+    },
+    {
+      "trial": 0,
+      "variant": "cuda_sdpa_bf16",
+      "context": "long",
+      "clients": 2,
+      "jobs": 12
+    },
+    {
+      "trial": 0,
+      "variant": "cuda_sdpa_bf16",
+      "context": "long",
+      "clients": 1,
+      "jobs": 12
+    },
+    {
+      "trial": 0,
+      "variant": "cuda_sdpa_bf16",
+      "context": "short",
+      "clients": 2,
+      "jobs": 12
+    },
+    {
+      "trial": 0,
+      "variant": "cuda_sdpa_bf16",
+      "context": "short",
+      "clients": 4,
+      "jobs": 12
+    },
+    {
+      "trial": 0,
+      "variant": "cuda_sdpa_bf16",
+      "context": "short",
+      "clients": 1,
+      "jobs": 12
+    },
+    {
+      "trial": 1,
+      "variant": "cuda_eager_bf16",
+      "context": "long",
+      "clients": 1,
+      "jobs": 12
+    },
+    {
+      "trial": 1,
+      "variant": "cuda_eager_bf16",
+      "context": "short",
+      "clients": 4,
+      "jobs": 12
+    },
+    {
+      "trial": 1,
+      "variant": "cuda_eager_bf16",
+      "context": "long",
+      "clients": 2,
+      "jobs": 12
+    },
+    {
+      "trial": 1,
+      "variant": "cuda_eager_bf16",
+      "context": "short",
+      "clients": 2,
+      "jobs": 12
+    },
+    {
+      "trial": 1,
+      "variant": "cuda_eager_bf16",
+      "context": "short",
+      "clients": 1,
+      "jobs": 12
+    },
+    {
+      "trial": 1,
+      "variant": "cuda_eager_bf16",
+      "context": "long",
+      "clients": 4,
+      "jobs": 12
+    },
+    {
+      "trial": 1,
+      "variant": "cuda_sdpa_bf16",
+      "context": "long",
+      "clients": 1,
+      "jobs": 12
+    },
+    {
+      "trial": 1,
+      "variant": "cuda_sdpa_bf16",
+      "context": "short",
+      "clients": 4,
+      "jobs": 12
+    },
+    {
+      "trial": 1,
+      "variant": "cuda_sdpa_bf16",
+      "context": "long",
+      "clients": 2,
+      "jobs": 12
+    },
+    {
+      "trial": 1,
+      "variant": "cuda_sdpa_bf16",
+      "context": "short",
+      "clients": 2,
+      "jobs": 12
+    },
+    {
+      "trial": 1,
+      "variant": "cuda_sdpa_bf16",
+      "context": "short",
+      "clients": 1,
+      "jobs": 12
+    },
+    {
+      "trial": 1,
+      "variant": "cuda_sdpa_bf16",
+      "context": "long",
+      "clients": 4,
+      "jobs": 12
+    },
+    {
+      "trial": 2,
+      "variant": "cuda_eager_bf16",
+      "context": "long",
+      "clients": 1,
+      "jobs": 12
+    },
+    {
+      "trial": 2,
+      "variant": "cuda_eager_bf16",
+      "context": "short",
+      "clients": 1,
+      "jobs": 12
+    },
+    {
+      "trial": 2,
+      "variant": "cuda_eager_bf16",
+      "context": "long",
+      "clients": 4,
+      "jobs": 12
+    },
+    {
+      "trial": 2,
+      "variant": "cuda_eager_bf16",
+      "context": "long",
+      "clients": 2,
+      "jobs": 12
+    },
+    {
+      "trial": 2,
+      "variant": "cuda_eager_bf16",
+      "context": "short",
+      "clients": 2,
+      "jobs": 12
+    },
+    {
+      "trial": 2,
+      "variant": "cuda_eager_bf16",
+      "context": "short",
+      "clients": 4,
+      "jobs": 12
+    },
+    {
+      "trial": 2,
+      "variant": "cuda_sdpa_bf16",
+      "context": "long",
+      "clients": 1,
+      "jobs": 12
+    },
+    {
+      "trial": 2,
+      "variant": "cuda_sdpa_bf16",
+      "context": "short",
+      "clients": 1,
+      "jobs": 12
+    },
+    {
+      "trial": 2,
+      "variant": "cuda_sdpa_bf16",
+      "context": "long",
+      "clients": 4,
+      "jobs": 12
+    },
+    {
+      "trial": 2,
+      "variant": "cuda_sdpa_bf16",
+      "context": "long",
+      "clients": 2,
+      "jobs": 12
+    },
+    {
+      "trial": 2,
+      "variant": "cuda_sdpa_bf16",
+      "context": "short",
+      "clients": 2,
+      "jobs": 12
+    },
+    {
+      "trial": 2,
+      "variant": "cuda_sdpa_bf16",
+      "context": "short",
+      "clients": 4,
+      "jobs": 12
+    }
+  ],
+  "loads": [
+    {
+      "trial": 0,
+      "variant": "cuda_eager_bf16",
+      "seconds": 4.343133399961516
+    },
+    {
+      "trial": 0,
+      "variant": "cuda_sdpa_bf16",
+      "seconds": 2.0695136000867933
+    },
+    {
+      "trial": 1,
+      "variant": "cuda_eager_bf16",
+      "seconds": 2.3518140998203307
+    },
+    {
+      "trial": 1,
+      "variant": "cuda_sdpa_bf16",
+      "seconds": 2.023211299907416
+    },
+    {
+      "trial": 2,
+      "variant": "cuda_eager_bf16",
+      "seconds": 2.0041952999308705
+    },
+    {
+      "trial": 2,
+      "variant": "cuda_sdpa_bf16",
+      "seconds": 2.1257453998550773
+    }
+  ],
+  "environment": {
+    "python": "3.12.6",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "cpu": "AMD Ryzen 9 8945HX with Radeon Graphics",
+    "cpu_threads": 4,
+    "torch": "2.10.0+cu128",
+    "cuda_runtime": "12.8",
+    "driver": "582.05",
+    "gpu": "NVIDIA GeForce RTX 5070 Laptop GPU",
+    "gpu_capability": [
+      12,
+      0
+    ],
+    "quantized_engine": "onednn",
+    "matmul_allow_tf32": false
+  },
+  "completed_utc": "2026-10-03T15:05:13.296143+00:00",
+  "requests": 432
+}
