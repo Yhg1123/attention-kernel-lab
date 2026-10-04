@@ -8,6 +8,8 @@ An evidence based comparison of causal attention implementations on 4 GB and 8 G
 
 2026-10-04：[864 次完整 HTTP 小批量实验](results/2026-10-04-qa-microbatch/INTERPRETATION.md)。4 人并发时，batch4 的短/长资料吞吐量为原服务的 **1.41× / 2.21×**，完整回答中位数 **2.10 → 1.46 秒 / 3.45 → 1.59 秒**；单人没有同等收益，18 次回答发生变化，已有幻觉仍未解决。[运行批量实验](QA_BATCHING.md)
 
+补充 [288 次固定 64 token 对照](results/2026-10-04-qa-microbatch-fixed/INTERPRETATION.md)：输出等长时吞吐为原服务的 **3.50× / 3.45×**，支持提速并非只因回答变短。两组共 1152 条正式请求全部成功；固定长度输出不用于质量评分。
+
 2026-10-03：[1/2/4 客户端、432 次并发请求](results/2026-10-03-qa-load/INTERPRETATION.md)补齐排队数据。eager BF16 短资料从 1 人到 4 人，完整回答中位数从 0.73 秒增至 2.37 秒，吞吐量约 1.46–1.52 请求/秒；当前单推理线程主要让请求排队。
 
 2026-10-03：[10 轮 / 280 次请求复测](results/2026-10-03-qa-repeat-128/INTERPRETATION.md)，固定输出扩大到 128 token；短/长资料的配对加速比分别为 1.002× / 0.977×，重采样区间均跨过 1，仍未证明 SDPA 能稳定加速完整问答。

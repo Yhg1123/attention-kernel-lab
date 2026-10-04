@@ -4,6 +4,8 @@
 
 这是独立实验入口。原 `qa_app.py` 默认行为保持现状。
 
+本机结果：[864 次自然回答](results/2026-10-04-qa-microbatch/INTERPRETATION.md) · [288 次固定 64 token 控制](results/2026-10-04-qa-microbatch-fixed/INTERPRETATION.md)。4 客户端自然回答的短/长资料吞吐为原服务的 1.41× / 2.21×，已有幻觉仍未解决。
+
 ```powershell
 $env:HF_HUB_OFFLINE='1'
 $env:TRANSFORMERS_OFFLINE='1'

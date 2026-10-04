@@ -18,6 +18,7 @@ jobs:
       - run: python summarize_qa.py --run results/2026-10-03-qa-repeat-128 --verify-only
       - run: python qa_load.py --output results/2026-10-03-qa-load --verify-only
       - run: python qa_batch_benchmark.py --output results/2026-10-04-qa-microbatch --verify-only
+      - run: python qa_batch_benchmark.py --output results/2026-10-04-qa-microbatch-fixed --verify-only
       - run: python benchmark.py --device cpu --lengths 16 --warmup 1 --repeats 2 --output smoke-results
       - run: python profile_workloads.py --device cpu --dtypes float32 --lengths 16 --batch-sizes 1 --warmup 1 --samples 3 --trials 2 --output smoke-results/profiles
       - run: python select_profile.py --run smoke-results/profiles --output smoke-results/policy.json --min-trials 2
