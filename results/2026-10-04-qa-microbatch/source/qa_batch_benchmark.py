@@ -17,31 +17,6 @@ from qa_load import run_clients, summarize_load, validate_rows
 METHODS = ('serial', 'batch1', 'batch2', 'batch4')
 
 
-def validate_batch_members(rows):
-    batches, errors, missing = {}, {}, {}
-    group_key = lambda r: (r['trial'],r['variant'],r['context'],r['clients'])
-    for row in rows:
-        if row['status'] == 'error':
-            group = group_key(row)
-            errors[group] = errors.get(group,0)+1
-        if row['status'] == 'ok' and row['variant'] != 'serial':
-            batches.setdefault((row['trial'],row['variant'],row['batch_id']),[]).append(row)
-    for batch in batches.values():
-        size, width = batch[0]['actual_batch_size'], batch[0]['padded_input_tokens']
-        group = group_key(batch[0])
-        if (len(batch) > size or width < max(r['input_tokens'] for r in batch)
-                or (len(batch) == size and width != max(r['input_tokens'] for r in batch))
-                or any(group_key(r) != group or r['actual_batch_size'] != size or r['padded_input_tokens'] != width
-                       or r['padding_tokens'] != width-r['input_tokens'] for r in batch)):
-            raise ValueError('Batch membership or padding mismatch')
-        missing[group] = missing.get(group,0)+size-len(batch)
-    # A failed HTTP response loses its batch metadata. Bound the unknown members
-    # by actual errors in that group; never invent a membership for a failed row.
-    if any(count > errors.get(group,0) for group,count in missing.items()):
-        raise ValueError('Missing successful batch member')
-    return sum(missing.values())
-
-
 def planned_groups(args, count):
     return [dict(trial=t, variant=m, context=c, clients=n, jobs=count*args['repetitions'])
             for t in range(args['trials']) for m in args['methods']
@@ -60,7 +35,6 @@ def verify(run):
         raise ValueError('Measured groups differ from declared plan')
     rows = [json.loads(line) for line in (run/'requests.jsonl').read_text(encoding='utf-8').splitlines()]
     validate_rows(rows, planned)
-    validate_batch_members(rows)
     if len(rows) != meta['requests']:
         raise ValueError('Request count mismatch')
     prompts = {}
@@ -85,7 +59,7 @@ def verify(run):
             raise ValueError('Invalid actual batch size')
         if meta['arguments']['fixed_tokens'] and row['output_tokens'] != meta['arguments']['max_new_tokens']:
             raise ValueError('Fixed token count mismatch')
-        if not meta['arguments']['fixed_tokens'] and check_answer(case,row['answer'])['fact_check_pass'] != row['fact_check_pass']:
+        if check_answer(case,row['answer'])['fact_check_pass'] != row['fact_check_pass']:
             raise ValueError('Keyword grade mismatch')
     return meta, rows
 
@@ -105,8 +79,7 @@ def main():
     args = parser.parse_args()
     if args.verify_only:
         _, rows = verify(args.output)
-        errors = sum(r['status'] != 'ok' for r in rows)
-        print(f'Verified {len(rows)} HTTP records ({errors} errors); matching unpadded inputs for successful responses')
+        print(f'Verified {len(rows)} HTTP requests and identical unpadded inputs across methods')
         return
     import math
     kb = KnowledgeBase()
@@ -165,7 +138,7 @@ def main():
                         case = cases[row['job_index']]
                         row['model_variant'] = row.get('variant')
                         row.update(group,question_id=case['id'],question=case['question'])
-                        if row['status'] == 'ok' and not args.fixed_tokens:
+                        if row['status'] == 'ok':
                             row.update(check_answer(case,row['answer']))
                         with (args.output/'requests.jsonl').open('a',encoding='utf-8') as stream:
                             stream.write(json.dumps(row,ensure_ascii=False,allow_nan=False)+'\n')

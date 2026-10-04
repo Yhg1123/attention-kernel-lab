@@ -6,6 +6,7 @@ import unittest
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 import torch
 from qa_batch import BatchStreamer, MicroBatchWorker
+from qa_batch_benchmark import validate_batch_members
 
 
 class Decoder:
@@ -80,3 +81,22 @@ class BatchTests(unittest.TestCase):
         for size,wait in ((0,10),(5,10),(1,-1),(2,float('nan'))):
             with self.assertRaises(ValueError):
                 MicroBatchWorker(lambda batch:None,size,wait)
+
+    def test_batch_evidence_detects_missing_member_and_wrong_padding(self):
+        rows=[dict(status='ok',variant='batch2',trial=0,context='short',clients=2,batch_id=1,actual_batch_size=2,
+                   input_tokens=n,padded_input_tokens=10,padding_tokens=10-n) for n in (7,10)]
+        validate_batch_members(rows)
+        with self.assertRaises(ValueError):
+            validate_batch_members(rows[:1])
+        rows[0]['padding_tokens']=0
+        with self.assertRaises(ValueError):
+            validate_batch_members(rows)
+
+    def test_http_error_can_account_for_unknown_batch_member(self):
+        rows=[dict(status='ok',variant='batch2',trial=0,context='short',clients=2,batch_id=1,
+                   actual_batch_size=2,input_tokens=7,padded_input_tokens=10,padding_tokens=3),
+              dict(status='error',variant='batch2',trial=0,context='short',clients=2)]
+        self.assertEqual(validate_batch_members(rows),1)
+        rows[1]['context']='long'
+        with self.assertRaises(ValueError):
+            validate_batch_members(rows)

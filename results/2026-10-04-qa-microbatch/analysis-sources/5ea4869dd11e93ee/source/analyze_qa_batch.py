@@ -13,11 +13,6 @@ from qa_evidence import snapshot_sources, source_directory
 from qa_load import summarize_load
 
 
-def lf_sha256(path):
-    """Git normalizes text evidence; hash the explicitly canonical LF form."""
-    return hashlib.sha256(path.read_bytes().replace(b'\r\n',b'\n')).hexdigest()
-
-
 def analyze(run):
     meta, rows = verify(run)
     fixed = meta['arguments']['fixed_tokens']
@@ -77,7 +72,7 @@ def analyze(run):
         archive.mkdir(parents=True)
         snapshot_sources(archive,hashes,root)
     result = dict(schema='qa-microbatch-analysis-v1',source_run=str(run),requests=len(rows),
-                  input_lf_sha256={n:lf_sha256(run/n) for n in ('metadata.json','requests.jsonl')},
+                  input_sha256={n:hashlib.sha256((run/n).read_bytes()).hexdigest() for n in ('metadata.json','requests.jsonl')},
                   analysis_source_sha256=hashes,analysis_source_directory=archive.relative_to(run).as_posix(),
                   aggregation='Pooled request latency median/nearest-rank P95 across all trials. Throughput=sum completed/sum full group durations. Ratios pair full group duration to serial in the same trial/context/client count; three ratios are descriptive, not a confidence interval. Keyword pass counts do not establish semantic correctness.',
                   fixed_tokens=fixed,summaries=summaries)

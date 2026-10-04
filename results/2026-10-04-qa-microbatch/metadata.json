@@ -1,0 +1,633 @@
+{
+  "schema": "qa-microbatch-v1",
+  "started_utc": "2026-10-04T12:04:06.209386+00:00",
+  "model": "Qwen/Qwen2.5-1.5B-Instruct",
+  "revision": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+  "arguments": {
+    "output": "results\\2026-10-04-qa-microbatch",
+    "trials": 3,
+    "repetitions": 2,
+    "clients": [
+      1,
+      2,
+      4
+    ],
+    "methods": [
+      "serial",
+      "batch1",
+      "batch2",
+      "batch4"
+    ],
+    "max_new_tokens": 96,
+    "fixed_tokens": false,
+    "wait_ms": 10,
+    "verify_only": false
+  },
+  "source_sha256": {
+    "qa_batch_benchmark.py": "cb380f1277aee21e1a4ae5548ba2718737d0e06ce98f6acee93fcca8ec01555c",
+    "qa_batch.py": "9489b5b24ff6afba3efd643ed33d38e21bf8615ded0ba12cd11bc9b65d6f271a",
+    "qa_load.py": "9ed19e3d84395b919520b7cf19d684c6dee502b63b47e307b0d69b669057b839",
+    "qa_app.py": "ccf8a64338dd8ee5a54404b1165e55ce719543060890bf940e57f5e19ecc3c6e",
+    "qa_benchmark.py": "9d7929799d7339aec73572276546d5a58d088d9b02ea7064d3a7d382aa2a284c",
+    "qa_evidence.py": "2962ec039d026dd81077dff54f6127aa3856618bd2b43a88b20374fa667cf0bb",
+    "qa_fixtures.json": "6e118efe0aa6b9ad2042d5926e9b7410443136f000be38fe15a8ca2dcb7d9687",
+    "qa_ui.html": "c3433cb20f5c566d71ede89d7bac070443b13890683ec0b39ff233c4aaabbba4",
+    "bench_utils.py": "363ecef7417b761523c589a5b136f4674697efe3922186eb98a252b61f1dc466"
+  },
+  "packages": {
+    "torch": "2.10.0+cu128",
+    "transformers": "4.57.6",
+    "numpy": "2.5.3",
+    "safetensors": "0.8.0"
+  },
+  "protocol": "Closed-loop HTTP clients; barrier release; identical shuffled six-question workload for all methods/client counts per trial. Fresh model per method/trial; seeded method and group order. Eager BF16 throughout. Serial is original Engine; batch1 controls adapter overhead; batch2/4 coalesce compatible requests for up to wait_ms. Static batches, left padding, no answer cache. One warm group per context with six jobs and up to four clients, excluded from measured data; model load excluded. Source snapshots are exact bytes.",
+  "timing": "First nonempty HTTP text and full done-event latency include queue and coalescing. Batch done events wait for longest member. Queue includes coalescing wait. Retrieval, tokenization, generation and memory metrics are shared batch-level measurements, not additive per request. Throughput includes full finite group duration, not production capacity. P95 descriptive only.",
+  "quality": "Six existing regression questions, not independent evaluation. Token identity measured separately from keyword checks. Natural-length output can change with batch shape. Fixed-token controls intentionally disable EOS and must not be used to score answer quality.",
+  "groups": [
+    {
+      "trial": 0,
+      "variant": "batch1",
+      "context": "short",
+      "clients": 4,
+      "jobs": 12
+    },
+    {
+      "trial": 0,
+      "variant": "batch1",
+      "context": "long",
+      "clients": 4,
+      "jobs": 12
+    },
+    {
+      "trial": 0,
+      "variant": "batch1",
+      "context": "long",
+      "clients": 2,
+      "jobs": 12
+    },
+    {
+      "trial": 0,
+      "variant": "batch1",
+      "context": "short",
+      "clients": 1,
+      "jobs": 12
+    },
+    {
+      "trial": 0,
+      "variant": "batch1",
+      "context": "short",
+      "clients": 2,
+      "jobs": 12
+    },
+    {
+      "trial": 0,
+      "variant": "batch1",
+      "context": "long",
+      "clients": 1,
+      "jobs": 12
+    },
+    {
+      "trial": 0,
+      "variant": "serial",
+      "context": "short",
+      "clients": 4,
+      "jobs": 12
+    },
+    {
+      "trial": 0,
+      "variant": "serial",
+      "context": "long",
+      "clients": 4,
+      "jobs": 12
+    },
+    {
+      "trial": 0,
+      "variant": "serial",
+      "context": "long",
+      "clients": 2,
+      "jobs": 12
+    },
+    {
+      "trial": 0,
+      "variant": "serial",
+      "context": "short",
+      "clients": 1,
+      "jobs": 12
+    },
+    {
+      "trial": 0,
+      "variant": "serial",
+      "context": "short",
+      "clients": 2,
+      "jobs": 12
+    },
+    {
+      "trial": 0,
+      "variant": "serial",
+      "context": "long",
+      "clients": 1,
+      "jobs": 12
+    },
+    {
+      "trial": 0,
+      "variant": "batch4",
+      "context": "short",
+      "clients": 4,
+      "jobs": 12
+    },
+    {
+      "trial": 0,
+      "variant": "batch4",
+      "context": "long",
+      "clients": 4,
+      "jobs": 12
+    },
+    {
+      "trial": 0,
+      "variant": "batch4",
+      "context": "long",
+      "clients": 2,
+      "jobs": 12
+    },
+    {
+      "trial": 0,
+      "variant": "batch4",
+      "context": "short",
+      "clients": 1,
+      "jobs": 12
+    },
+    {
+      "trial": 0,
+      "variant": "batch4",
+      "context": "short",
+      "clients": 2,
+      "jobs": 12
+    },
+    {
+      "trial": 0,
+      "variant": "batch4",
+      "context": "long",
+      "clients": 1,
+      "jobs": 12
+    },
+    {
+      "trial": 0,
+      "variant": "batch2",
+      "context": "short",
+      "clients": 4,
+      "jobs": 12
+    },
+    {
+      "trial": 0,
+      "variant": "batch2",
+      "context": "long",
+      "clients": 4,
+      "jobs": 12
+    },
+    {
+      "trial": 0,
+      "variant": "batch2",
+      "context": "long",
+      "clients": 2,
+      "jobs": 12
+    },
+    {
+      "trial": 0,
+      "variant": "batch2",
+      "context": "short",
+      "clients": 1,
+      "jobs": 12
+    },
+    {
+      "trial": 0,
+      "variant": "batch2",
+      "context": "short",
+      "clients": 2,
+      "jobs": 12
+    },
+    {
+      "trial": 0,
+      "variant": "batch2",
+      "context": "long",
+      "clients": 1,
+      "jobs": 12
+    },
+    {
+      "trial": 1,
+      "variant": "batch2",
+      "context": "short",
+      "clients": 4,
+      "jobs": 12
+    },
+    {
+      "trial": 1,
+      "variant": "batch2",
+      "context": "long",
+      "clients": 4,
+      "jobs": 12
+    },
+    {
+      "trial": 1,
+      "variant": "batch2",
+      "context": "short",
+      "clients": 2,
+      "jobs": 12
+    },
+    {
+      "trial": 1,
+      "variant": "batch2",
+      "context": "long",
+      "clients": 2,
+      "jobs": 12
+    },
+    {
+      "trial": 1,
+      "variant": "batch2",
+      "context": "short",
+      "clients": 1,
+      "jobs": 12
+    },
+    {
+      "trial": 1,
+      "variant": "batch2",
+      "context": "long",
+      "clients": 1,
+      "jobs": 12
+    },
+    {
+      "trial": 1,
+      "variant": "batch4",
+      "context": "short",
+      "clients": 4,
+      "jobs": 12
+    },
+    {
+      "trial": 1,
+      "variant": "batch4",
+      "context": "long",
+      "clients": 4,
+      "jobs": 12
+    },
+    {
+      "trial": 1,
+      "variant": "batch4",
+      "context": "short",
+      "clients": 2,
+      "jobs": 12
+    },
+    {
+      "trial": 1,
+      "variant": "batch4",
+      "context": "long",
+      "clients": 2,
+      "jobs": 12
+    },
+    {
+      "trial": 1,
+      "variant": "batch4",
+      "context": "short",
+      "clients": 1,
+      "jobs": 12
+    },
+    {
+      "trial": 1,
+      "variant": "batch4",
+      "context": "long",
+      "clients": 1,
+      "jobs": 12
+    },
+    {
+      "trial": 1,
+      "variant": "serial",
+      "context": "short",
+      "clients": 4,
+      "jobs": 12
+    },
+    {
+      "trial": 1,
+      "variant": "serial",
+      "context": "long",
+      "clients": 4,
+      "jobs": 12
+    },
+    {
+      "trial": 1,
+      "variant": "serial",
+      "context": "short",
+      "clients": 2,
+      "jobs": 12
+    },
+    {
+      "trial": 1,
+      "variant": "serial",
+      "context": "long",
+      "clients": 2,
+      "jobs": 12
+    },
+    {
+      "trial": 1,
+      "variant": "serial",
+      "context": "short",
+      "clients": 1,
+      "jobs": 12
+    },
+    {
+      "trial": 1,
+      "variant": "serial",
+      "context": "long",
+      "clients": 1,
+      "jobs": 12
+    },
+    {
+      "trial": 1,
+      "variant": "batch1",
+      "context": "short",
+      "clients": 4,
+      "jobs": 12
+    },
+    {
+      "trial": 1,
+      "variant": "batch1",
+      "context": "long",
+      "clients": 4,
+      "jobs": 12
+    },
+    {
+      "trial": 1,
+      "variant": "batch1",
+      "context": "short",
+      "clients": 2,
+      "jobs": 12
+    },
+    {
+      "trial": 1,
+      "variant": "batch1",
+      "context": "long",
+      "clients": 2,
+      "jobs": 12
+    },
+    {
+      "trial": 1,
+      "variant": "batch1",
+      "context": "short",
+      "clients": 1,
+      "jobs": 12
+    },
+    {
+      "trial": 1,
+      "variant": "batch1",
+      "context": "long",
+      "clients": 1,
+      "jobs": 12
+    },
+    {
+      "trial": 2,
+      "variant": "serial",
+      "context": "long",
+      "clients": 2,
+      "jobs": 12
+    },
+    {
+      "trial": 2,
+      "variant": "serial",
+      "context": "long",
+      "clients": 1,
+      "jobs": 12
+    },
+    {
+      "trial": 2,
+      "variant": "serial",
+      "context": "short",
+      "clients": 2,
+      "jobs": 12
+    },
+    {
+      "trial": 2,
+      "variant": "serial",
+      "context": "short",
+      "clients": 1,
+      "jobs": 12
+    },
+    {
+      "trial": 2,
+      "variant": "serial",
+      "context": "short",
+      "clients": 4,
+      "jobs": 12
+    },
+    {
+      "trial": 2,
+      "variant": "serial",
+      "context": "long",
+      "clients": 4,
+      "jobs": 12
+    },
+    {
+      "trial": 2,
+      "variant": "batch2",
+      "context": "long",
+      "clients": 2,
+      "jobs": 12
+    },
+    {
+      "trial": 2,
+      "variant": "batch2",
+      "context": "long",
+      "clients": 1,
+      "jobs": 12
+    },
+    {
+      "trial": 2,
+      "variant": "batch2",
+      "context": "short",
+      "clients": 2,
+      "jobs": 12
+    },
+    {
+      "trial": 2,
+      "variant": "batch2",
+      "context": "short",
+      "clients": 1,
+      "jobs": 12
+    },
+    {
+      "trial": 2,
+      "variant": "batch2",
+      "context": "short",
+      "clients": 4,
+      "jobs": 12
+    },
+    {
+      "trial": 2,
+      "variant": "batch2",
+      "context": "long",
+      "clients": 4,
+      "jobs": 12
+    },
+    {
+      "trial": 2,
+      "variant": "batch4",
+      "context": "long",
+      "clients": 2,
+      "jobs": 12
+    },
+    {
+      "trial": 2,
+      "variant": "batch4",
+      "context": "long",
+      "clients": 1,
+      "jobs": 12
+    },
+    {
+      "trial": 2,
+      "variant": "batch4",
+      "context": "short",
+      "clients": 2,
+      "jobs": 12
+    },
+    {
+      "trial": 2,
+      "variant": "batch4",
+      "context": "short",
+      "clients": 1,
+      "jobs": 12
+    },
+    {
+      "trial": 2,
+      "variant": "batch4",
+      "context": "short",
+      "clients": 4,
+      "jobs": 12
+    },
+    {
+      "trial": 2,
+      "variant": "batch4",
+      "context": "long",
+      "clients": 4,
+      "jobs": 12
+    },
+    {
+      "trial": 2,
+      "variant": "batch1",
+      "context": "long",
+      "clients": 2,
+      "jobs": 12
+    },
+    {
+      "trial": 2,
+      "variant": "batch1",
+      "context": "long",
+      "clients": 1,
+      "jobs": 12
+    },
+    {
+      "trial": 2,
+      "variant": "batch1",
+      "context": "short",
+      "clients": 2,
+      "jobs": 12
+    },
+    {
+      "trial": 2,
+      "variant": "batch1",
+      "context": "short",
+      "clients": 1,
+      "jobs": 12
+    },
+    {
+      "trial": 2,
+      "variant": "batch1",
+      "context": "short",
+      "clients": 4,
+      "jobs": 12
+    },
+    {
+      "trial": 2,
+      "variant": "batch1",
+      "context": "long",
+      "clients": 4,
+      "jobs": 12
+    }
+  ],
+  "loads": [
+    {
+      "trial": 0,
+      "method": "batch1",
+      "seconds": 3.0800315998494625
+    },
+    {
+      "trial": 0,
+      "method": "serial",
+      "seconds": 2.0053456001915038
+    },
+    {
+      "trial": 0,
+      "method": "batch4",
+      "seconds": 1.7635902999900281
+    },
+    {
+      "trial": 0,
+      "method": "batch2",
+      "seconds": 1.7839883000124246
+    },
+    {
+      "trial": 1,
+      "method": "batch2",
+      "seconds": 1.7356481000315398
+    },
+    {
+      "trial": 1,
+      "method": "batch4",
+      "seconds": 1.6914671000558883
+    },
+    {
+      "trial": 1,
+      "method": "serial",
+      "seconds": 1.695378800155595
+    },
+    {
+      "trial": 1,
+      "method": "batch1",
+      "seconds": 1.6514669999014586
+    },
+    {
+      "trial": 2,
+      "method": "serial",
+      "seconds": 1.7653568000532687
+    },
+    {
+      "trial": 2,
+      "method": "batch2",
+      "seconds": 1.7977328998968005
+    },
+    {
+      "trial": 2,
+      "method": "batch4",
+      "seconds": 1.83087889989838
+    },
+    {
+      "trial": 2,
+      "method": "batch1",
+      "seconds": 1.7784341000951827
+    }
+  ],
+  "warmup_requests": 144,
+  "environment": {
+    "python": "3.12.6",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "cpu": "AMD Ryzen 9 8945HX with Radeon Graphics",
+    "cpu_threads": 4,
+    "torch": "2.10.0+cu128",
+    "cuda_runtime": "12.8",
+    "driver": "582.05",
+    "gpu": "NVIDIA GeForce RTX 5070 Laptop GPU",
+    "gpu_capability": [
+      12,
+      0
+    ],
+    "quantized_engine": "onednn",
+    "matmul_allow_tf32": false
+  },
+  "completed_utc": "2026-10-04T12:16:40.417757+00:00",
+  "requests": 864
+}
