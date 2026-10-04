@@ -6,6 +6,8 @@ An evidence based comparison of causal attention implementations on 4 GB and 8 G
 
 ## 完整中文问答应用（2026-10-01）
 
+2026-10-04：新增[小批量流式问答实验](QA_BATCHING.md)，比较原串行服务与 batch=1/2/4，在相同模型、提示词和精度下检查并发吞吐、首段文字、完整回答及输出变化。
+
 2026-10-03：[1/2/4 客户端、432 次并发请求](results/2026-10-03-qa-load/INTERPRETATION.md)补齐排队数据。eager BF16 短资料从 1 人到 4 人，完整回答中位数从 0.73 秒增至 2.37 秒，吞吐量约 1.46–1.52 请求/秒；当前单推理线程主要让请求排队。
 
 2026-10-03：[10 轮 / 280 次请求复测](results/2026-10-03-qa-repeat-128/INTERPRETATION.md)，固定输出扩大到 128 token；短/长资料的配对加速比分别为 1.002× / 0.977×，重采样区间均跨过 1，仍未证明 SDPA 能稳定加速完整问答。
